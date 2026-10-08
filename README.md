@@ -118,4 +118,4 @@ The [service table](docs/SERVICES.md) lists each of the 17 Tool files, its expos
 
 Tools and Functions execute arbitrary Python inside Open WebUI. Inspect each file before import, restrict Tool creation to trusted administrators, keep your instance updated, and enable <code>ENABLE_VALVE_ENCRYPTION=true</code> with a stable <code>WEBUI_SECRET_KEY</code>. A masked password field alone does **not** encrypt values in the database. Open WebUI v0.11.4 has optional experimental **Tool Permissions → Ask for approval**; it is off by default and does not gate automations or channel replies. The per-user billable switch in these Tools stays off by default.
 
-[Privacy](PRIVACY.md) · [Source and development checks](docs/DEVELOPMENT.md) · [Report a problem](https://github.com/AceDataCloud/OpenWebUIPlugins/issues) · dev@acedata.cloud
+[Privacy](PRIVACY.md) · [Source and development checks](docs/DEVELOPMENT.md) · [Community submission pack](docs/COMMUNITY_SUBMISSION.md) · [Report a problem](https://github.com/AceDataCloud/OpenWebUIPlugins/issues) · dev@acedata.cloud

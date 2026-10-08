@@ -112,4 +112,4 @@ Use the attached Ace Data Cloud GPT Image retrieve_task function exactly once on
 
 Tool 和 Function 在 Open WebUI 服务器进程内执行任意 Python。管理员应逐个审查源码、限制 Tool 导入权限，并用稳定的 <code>WEBUI_SECRET_KEY</code> 配合 <code>ENABLE_VALVE_ENCRYPTION=true</code>；输入框遮蔽不等于数据库加密。v0.11.4 的实验性 **Tool Permissions → Ask for approval** 默认关闭，且自动化与频道回复不受它拦截；本仓库的个人计费开关默认关闭。
 
-[隐私说明](../PRIVACY.md) · [开发与验证](../docs/DEVELOPMENT.md) · [反馈问题](https://github.com/AceDataCloud/OpenWebUIPlugins/issues) · dev@acedata.cloud
+[隐私说明](../PRIVACY.md) · [开发与验证](../docs/DEVELOPMENT.md) · [Community 投稿材料](../docs/COMMUNITY_SUBMISSION.md) · [反馈问题](https://github.com/AceDataCloud/OpenWebUIPlugins/issues) · dev@acedata.cloud
