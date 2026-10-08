@@ -64,7 +64,7 @@ docker run -d --name open-webui -p 127.0.0.1:3000:8080 \
 Use Ace Data Cloud Google Search exactly once for the official Open WebUI documentation about Tools. Return the first result title and URL; do not make any other search calls.
 ~~~
 
-实测返回标题 <code>Tools / Open WebUI</code> 与官方文档链接 https://docs.openwebui.com/features/extensibility/plugin/tools/。点 **View Result from search** 可查看 Tool 返回值。用完后关闭 **Allow Billable Calls**。
+实测返回标题 <code>Tools / Open WebUI</code> 与官方文档链接 https://docs.openwebui.com/features/extensibility/plugin/tools/。点 **View Result from search** 可查看 Tool 返回值。同一测试 Key 恰好匹配一条 HTTP 200 的账单记录，该账户折扣后扣费 **0.009 Credits**；你的价格以当前账单为准。用完后关闭 **Allow Billable Calls**。
 
 ![普通用户真实搜索结果](../_assets/tutorial/03-google-search-result.png)
 

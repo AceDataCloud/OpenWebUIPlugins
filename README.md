@@ -68,7 +68,7 @@ As a regular user:
 Use Ace Data Cloud Google Search exactly once for the official Open WebUI documentation about Tools. Return the first result title and URL; do not make any other search calls.
 ~~~
 
-The tested result contained <code>Tools / Open WebUI</code> and https://docs.openwebui.com/features/extensibility/plugin/tools/. Open **View Result from search** to inspect the tool output. Turn **Allow Billable Calls** off when you are finished.
+The tested result contained <code>Tools / Open WebUI</code> and https://docs.openwebui.com/features/extensibility/plugin/tools/. Open **View Result from search** to inspect the tool output. One matching usage record for the test key had HTTP 200 and deducted **0.009 Credits** under that account's discount; check your current price. Turn **Allow Billable Calls** off when you are finished.
 
 ![A regular user's real Google Search Tool result](./_assets/tutorial/03-google-search-result.png)
 

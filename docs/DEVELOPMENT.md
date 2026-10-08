@@ -27,7 +27,7 @@ The local test used a fresh Open WebUI v0.11.4 container, one admin and one ordi
 | --- | --- |
 | Pipe non-streaming chat | <code>gpt-5.6-luna</code> returned <code>OK</code> to a minimal real prompt. |
 | Pipe in browser chat | Native tool calls worked with the selected model. |
-| Google Search Tool in browser chat | One <code>search</code> call returned the official Open WebUI Tools documentation title and URL. |
+| Google Search Tool in browser chat | One <code>search</code> call returned the official Open WebUI Tools documentation title and URL. One same-key usage row <code>07363829-bbe1-4f72-aaa0-01c041cb4e52</code> had HTTP 200 and deducted 0.009 Credits under the test account's discount. |
 | GPT Image Tool in browser chat | One <code>generate_image</code> call returned task <code>7893131f-77d0-4f93-b779-d192a74dd3e8</code>. |
 | GPT Image read-only follow-up | <code>retrieve_task</code> on that same ID returned <code>succeeded</code>, one PNG URL, and a 200 image readback. |
 | GPT Image billing | Exactly one matching <code>ApiUsage</code> row, ID <code>8bf937aa-c8cb-48e5-ac75-a9312318af9f</code>, HTTP 200, deducted 0.099 Credits with the test account's discount. |
