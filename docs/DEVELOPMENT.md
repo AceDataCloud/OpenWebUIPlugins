@@ -25,6 +25,8 @@ The current result tests also cover pending tasks with preview URLs, intermediat
 
 The local test used a fresh Open WebUI v0.11.4 container, one admin and one ordinary user. The admin installed the Pipe and 17 Tool files, then granted read access to the two Pipe model IDs and each Tool. The ordinary user saw two Ace models in the model picker and 17 independent Tools in Integrations. Before the read grants, the ordinary user's API model and Tool lists were empty. The native Connection instructions follow [Open WebUI's official OpenAI-compatible guide](https://docs.openwebui.com/getting-started/quick-start/connect-a-provider/starting-with-openai-compatible/) and Ace Data Cloud's existing [Open WebUI customer guide](https://platform.acedata.cloud/documents); the local browser calls below exercised the optional Pipe path. Do not infer a new native Connection live-call proof from this table.
 
+After the 2026-10-12 result-handling revision, a separate disposable v0.11.4 instance accepted all **17 revised Tool files** through its administrator create API and returned all 17 IDs in the Tool list. It also accepted the revised model Function and listed its type as <code>pipe</code>. No Ace Data Cloud key was entered and no generation/search call was made in that import check. The disposable instance was removed. The ordinary-user read grants and browser calls below were on the earlier revision; current-revision installation and current-revision real calls remain distinct evidence.
+
 | Path | Observed result |
 | --- | --- |
 | Pipe non-streaming chat | <code>gpt-5.6-luna</code> returned <code>OK</code> to a minimal real prompt. |
