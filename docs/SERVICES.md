@@ -46,7 +46,7 @@ The 17 service names match Ace Data Cloud's 17 formal Dify Tool submissions. **T
 | MiniMax H3 | 5 | Task listing, deletion and batch retrieval. |
 | Wan | 4 | Wan 3 generation and batch retrieval. |
 | Kling | 12 | Motion, lip sync, talking photo, commerce, apparel, voices, elements and batch retrieval. |
-| Nano Banana | 4 | Batch retrieval. Dify v0.0.3 also accepts <code>nano-banana-2.1</code> for generation and editing; select it explicitly here after checking access and pricing. The lower-cost <code>nano-banana-2-lite</code> remains the default. |
+| Nano Banana | 4 | Batch retrieval. Dify v0.0.3 also accepts <code>nano-banana-2.1</code> for generation and editing; select it explicitly here after checking access and pricing. The verified first-run <code>nano-banana-2-lite</code> remains the default. |
 
 The counts come from the Dify provider manifests; a Dify action can itself support several modes. They document a scope gap, not a claim that Open WebUI cannot support those modes. Add an action only after verifying its current public API contract, cost, and one real outcome. For chat, use the native Connection instead of adding a second Tool for every model.
 
