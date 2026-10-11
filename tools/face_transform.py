@@ -13,6 +13,7 @@ licence: MIT
 from __future__ import annotations
 
 import json
+import re
 import httpx
 from pydantic import BaseModel, Field
 
@@ -47,7 +48,13 @@ class Tools:
     def _clean(self, value):
         hidden = {"request", "request_body", "user_id", "actor_user_id", "credential_id", "authorization_id", "application_id", "api_key", "token", "access_token", "refresh_token", "authorization", "headers", "supplier", "supplier_id", "provider_route", "upstream", "upstream_model", "actual_model", "secret"}
         if isinstance(value, dict):
-            return {key: ({"message": "Operation failed; inspect the task ID."} if key == "error" else self._clean(item)) for key, item in value.items() if str(key).lower() not in hidden and not str(key).lower().startswith("internal_")}
+            result = {}
+            for key, item in value.items():
+                name = str(key).lower()
+                if name in hidden or re.search(r"(^internal(?:_|$)|supplier|upstream|(?:^|_)secret(?:_|$))", name):
+                    continue
+                result[key] = ({"message": "Operation failed; inspect the task ID."} if name == "error" and item else self._clean(item))
+            return result
         if isinstance(value, list):
             return [self._clean(item) for item in value]
         return value
@@ -56,7 +63,7 @@ class Tools:
         urls = []
         if isinstance(value, dict):
             for key, item in value.items():
-                if key in {"url", "image_url", "video_url", "audio_url", "file_url"} and isinstance(item, str) and item.startswith("https://"):
+                if key in {"url", "image_url", "video_url", "audio_url", "file_url", "raw_image_url"} and isinstance(item, str) and item.startswith("https://"):
                     urls.append(item)
                 elif isinstance(item, (dict, list)):
                     urls.extend(self._media_urls(item))
@@ -66,36 +73,52 @@ class Tools:
         return list(dict.fromkeys(urls))
 
     def _result(self, value, fallback_task_id: str = "") -> dict:
+        if isinstance(value, dict) and isinstance(value.get("response"), str):
+            value = dict(value)
+            try:
+                value["response"] = json.loads(value["response"])
+            except ValueError:
+                value["response"] = {}
         clean = self._clean(value)
         if not isinstance(clean, dict):
-            return {"status": "returned", "task_id": fallback_task_id, "media_urls": self._media_urls(clean), "result": clean}
+            return {"status": "returned", "success": True, "task_id": fallback_task_id, "media_urls": self._media_urls(clean), "result": clean}
         task = clean.get("task") if isinstance(clean.get("task"), dict) else {}
         task_id = str(clean.get("task_id") or task.get("id") or fallback_task_id or "")
         response = clean.get("response", clean)
-        if isinstance(response, str):
-            try:
-                response = json.loads(response)
-            except ValueError:
-                response = {}
-        state = ""
-        if isinstance(response, dict):
-            state = str(response.get("status") or response.get("state") or "").lower()
-            if not state and isinstance(response.get("data"), dict):
-                state = str(response["data"].get("status") or response["data"].get("state") or "").lower()
-        if not state and task:
-            state = str(task.get("status") or task.get("state") or "").lower()
-        urls = self._media_urls(response)
-        if clean.get("success") is False or state in {"failed", "error", "cancelled", "canceled", "rejected"}:
-            status = "failed"
-        elif "finished_at" in clean and clean["finished_at"] is None:
+        states = []
+        failures = []
+        def visit(node):
+            if isinstance(node, dict):
+                if node.get("success") is False or node.get("error"):
+                    failures.append(True)
+                for name, item in node.items():
+                    if name in {"status", "state"} and isinstance(item, str):
+                        states.append(item.lower())
+                    elif name in {"data", "content", "task"} and isinstance(item, (dict, list)):
+                        visit(item)
+            elif isinstance(node, list):
+                for item in node:
+                    visit(item)
+        visit(response)
+        if task and response is not task:
+            visit(task)
+        if clean.get("success") is False or clean.get("error"):
+            failures.append(True)
+        failed = failures or any(state in {"failed", "error", "cancelled", "canceled", "rejected"} for state in states)
+        complete = bool(states) and all(state in {"complete", "completed", "succeeded", "succeed", "success", "finished"} for state in states)
+        unfinished = "finished_at" in clean and clean["finished_at"] is None
+        if unfinished:
             status = "pending"
-        elif state in {"complete", "completed", "succeeded", "succeed", "success", "finished"} or (clean.get("finished_at") and response):
+        elif failed:
+            status = "failed"
+        elif complete or (not states and clean.get("finished_at") and response):
             status = "succeeded"
         elif task_id:
             status = "pending"
         else:
             status = "returned"
-        return {"status": status, "task_id": task_id, "media_urls": urls, "result": clean}
+        urls = self._media_urls(response) if status in {"succeeded", "returned"} else []
+        return {"status": status, "success": status in {"succeeded", "returned"}, "task_id": task_id, "media_urls": urls, "result": clean}
 
     async def _post(self, path: str, payload: dict, key: str, task_id: str = "", extra_headers: dict | None = None) -> dict:
         try:
@@ -107,7 +130,7 @@ class Tools:
                 )
         except httpx.TransportError:
             raise RuntimeError("Connection failed; check request history before submitting again.") from None
-        if response.status_code >= 400:
+        if not 200 <= response.status_code < 300:
             raise RuntimeError(f"Ace Data Cloud HTTP {response.status_code}; check key, access, balance or request history.")
         try:
             value = response.json()

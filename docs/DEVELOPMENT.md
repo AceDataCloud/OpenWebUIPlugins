@@ -2,7 +2,7 @@
 
 ## Source layout
 
-Open WebUI Community imports one Python file per post. <code>functions/acedatacloud_pipe.py</code> is the model Pipe; each file under <code>tools/</code> is an independent Tool. <code>scripts/generate_service_tools.py</code> is the reviewed source for 16 service files; <code>tools/google_search.py</code> is small enough to maintain directly. Regenerate after editing a service action:
+Open WebUI's native OpenAI-compatible Connection is the default chat-model integration and needs no custom code. The Pipe is an optional personal-key model path. Open WebUI Community imports one Python file per post: <code>functions/acedatacloud_pipe.py</code> is the optional Pipe; each file under <code>tools/</code> is an independent service Tool. One source repository with 17 self-contained Tool files matches that install boundary. Splitting the source into 17 repositories would not change Community imports or user permissions, and would make coordinated security fixes harder. <code>scripts/generate_service_tools.py</code> is the reviewed source for 16 service files; <code>tools/google_search.py</code> is small enough to maintain directly. Regenerate after editing a service action:
 
 ~~~bash
 python3 scripts/generate_service_tools.py
@@ -17,11 +17,13 @@ The public API payloads were compared with the existing Ace Data Cloud Dify inte
 python3 scripts/audit_dify_contracts.py /path/to/AceDataCloud/.worktrees
 ~~~
 
-That optional audit needs <code>jsonschema</code> and the 16 local Dify source checkouts. It makes no API calls. On 2026-10-09, 24 exposed action payloads passed their service schemas. Fish Audio's selected model is an HTTP header, so the focused unit test checks that detail separately.
+That optional audit needs <code>jsonschema</code> and the 17 local Dify source checkouts. It makes no Ace Data Cloud API calls. On 2026-10-12, 25 exposed primary action payloads passed their service schemas, including Google Search's intercepted HTTP payload; the Nano Banana check uses the v0.0.3 contract when that checkout is present. Fish Audio's selected model is an HTTP header, so the focused unit test checks that detail separately. This audit validates payload shape, not the full Dify action surface or live service behavior; see the [per-service comparison](SERVICES.md#dify-scope-comparison).
+
+The current result tests also cover pending tasks with preview URLs, intermediate errors, completed JSON-string responses with private metadata, terminal failures, and Grok's public first-run model. A pending or failed task exposes no final <code>media_urls</code>. HTTP redirects are rejected as non-success responses; billable calls are never retried automatically.
 
 ## Open WebUI v0.11.4 local acceptance
 
-The local test used a fresh Open WebUI v0.11.4 container, one admin and one ordinary user. The admin installed the Pipe and 17 Tool files, then granted read access to the two Pipe model IDs and each Tool. The ordinary user saw two Ace models in the model picker and 17 independent Tools in Integrations. Before the read grants, the ordinary user's API model and Tool lists were empty.
+The local test used a fresh Open WebUI v0.11.4 container, one admin and one ordinary user. The admin installed the Pipe and 17 Tool files, then granted read access to the two Pipe model IDs and each Tool. The ordinary user saw two Ace models in the model picker and 17 independent Tools in Integrations. Before the read grants, the ordinary user's API model and Tool lists were empty. The native Connection instructions follow [Open WebUI's official OpenAI-compatible guide](https://docs.openwebui.com/getting-started/quick-start/connect-a-provider/starting-with-openai-compatible/) and Ace Data Cloud's existing [Open WebUI customer guide](https://platform.acedata.cloud/documents); the local browser calls below exercised the optional Pipe path. Do not infer a new native Connection live-call proof from this table.
 
 | Path | Observed result |
 | --- | --- |
@@ -45,6 +47,7 @@ Open WebUI Community highlighting and GitHub availability are not security revie
 ## Source references
 
 - [Open WebUI Pipe API](https://docs.openwebui.com/features/extensibility/plugin/functions/pipe/)
+- [Open WebUI native OpenAI-compatible Connection](https://docs.openwebui.com/getting-started/quick-start/connect-a-provider/starting-with-openai-compatible/)
 - [Open WebUI Tool development](https://docs.openwebui.com/features/extensibility/plugin/tools/development/)
 - [Open WebUI Community share and import](https://docs.openwebui.com/ecosystem/community/)
 - [Open WebUI Valve storage and encryption](https://docs.openwebui.com/features/extensibility/plugin/development/valves/)

@@ -13,7 +13,7 @@ Each link is one self-contained Python Tool file. Import only the services your 
 | [Qwen Image](../tools/qwen_image.py) | <code>generate_image</code>, <code>retrieve_task</code> | <code>qwen-image-3.0</code>, 1024*1024 | <code>/qwen-image/images</code>, <code>/qwen-image/tasks</code> |
 | [Veo](../tools/veo.py) | <code>generate_video</code>, <code>extend_video</code>, <code>retrieve_task</code> | <code>veo31-fast</code>, text to video | <code>/veo/videos</code>, <code>/veo/extend</code> if used, <code>/veo/tasks</code> |
 | [Google Search](../tools/google_search.py) | <code>search</code> | Web search, 3 results, page 1 | <code>/serp/google</code> |
-| [Grok](../tools/grok.py) | <code>ask_grok</code>, <code>generate_video</code>, <code>retrieve_task</code> | <code>grok-4</code> chat; choose an allowed public video model separately | <code>/grok/chat/completions</code>, <code>/grok/videos</code> if used, <code>/grok/tasks</code> |
+| [Grok](../tools/grok.py) | <code>ask_grok</code>, <code>generate_video</code>, <code>retrieve_task</code> | <code>grok-4</code> chat; video: <code>grok-imagine-video-1.5-fast:reverse</code>, 6 s, 480p | <code>/grok/chat/completions</code>, <code>/grok/videos</code> if used, <code>/grok/tasks</code> |
 | [Face Transform](../tools/face_transform.py) | <code>analyze_face</code>, <code>beautify_face</code> | Public HTTPS image URL you may process | <code>/face/analyze</code>, <code>/face/beautify</code> if used |
 | [Midjourney](../tools/midjourney.py) | <code>imagine</code>, <code>retrieve_task</code> | Version 8.2, fast | <code>/midjourney/imagine</code>, <code>/midjourney/tasks</code> |
 | [Flux](../tools/flux.py) | <code>generate_image</code>, <code>edit_image</code>, <code>retrieve_task</code> | <code>flux-dev</code>, 1024x1024 | <code>/flux/images</code>, <code>/flux/tasks</code> |
@@ -22,7 +22,33 @@ Each link is one self-contained Python Tool file. Import only the services your 
 | [Kling](../tools/kling.py) | <code>generate_video</code>, <code>retrieve_task</code> | <code>kling-v3-turbo</code>, 5 s, standard | <code>/kling/videos</code>, <code>/kling/tasks</code> |
 | [Nano Banana](../tools/nano_banana.py) | <code>generate_image</code>, <code>edit_image</code>, <code>retrieve_task</code> | <code>nano-banana-2-lite</code>, 1K, one image | <code>/nano-banana/images</code>, <code>/nano-banana/tasks</code> |
 
-The [model Pipe](../functions/acedatacloud_pipe.py) is separate from these Tools and needs <code>/v1/chat/completions</code>. Its administrator selects the displayed chat model IDs. Each user fills the Pipe's own key field under **Chat Controls → Valves → Functions**.
+The recommended model setup is Open WebUI's native OpenAI-compatible Connection, with base URL <code>https://api.acedata.cloud/v1</code>; a restricted key needs <code>/v1/models</code> and <code>/v1/chat/completions</code>. The optional [model Pipe](../functions/acedatacloud_pipe.py) is for a personal key per user. It needs only <code>/v1/chat/completions</code>; its administrator selects displayed model IDs, and each user fills the Pipe's own key under **Chat Controls → Valves → Functions**. The Connection key and each Tool's User Valve key are separate.
+
+## Dify scope comparison
+
+The 17 service names match Ace Data Cloud's 17 formal Dify Tool submissions. **The action surface is narrower.** Open WebUI Community installs one Tool file at a time, so this repository keeps one self-contained file and one future Community post per service. A separate GitHub repository per file would add release overhead without changing installation or permissions. As of 2026-10-12, the Dify provider manifests expose 97 action entries across these services, including batch queries, listing and advanced or destructive actions. These Open WebUI files expose 24 billable primary methods, 15 read-only task lookups and the Google Search method. Dify's larger action count does not mean that all advanced actions are safe first-run defaults here.
+
+| Service | Dify action entries | Additional Dify capabilities not exposed by this Open WebUI Tool |
+| --- | ---: | --- |
+| GPT Image | 5 | Task list and batch retrieval. |
+| Suno | 19 | Reference upload, format downloads, vocals/personas, projects, custom models and batch retrieval. |
+| Seedance | 3 | Batch retrieval; richer generation inputs are outside this first-run method. |
+| Fish Audio | 7 | Voice search, voice/model creation and batch retrieval. |
+| Seedream | 5 | Layer decomposition and batch retrieval. |
+| Happy Horse | 3 | Batch retrieval; image-to-video and editing modes are outside this first-run method. |
+| Qwen Image | 3 | Batch retrieval. |
+| Veo | 7 | Object editing, reshoot, upscale and batch retrieval. |
+| Google Search | 1 | The single Dify search action is represented by <code>search</code>. |
+| Grok | 4 | Batch retrieval; chat parameters and video reference inputs are narrower. |
+| Face Transform | 1 | Dify's single action selects from more face operations; this Tool exposes only analysis and beautification. |
+| Midjourney | 9 | Edit, describe, translate, video, seed, shorten and batch retrieval. |
+| Flux | 5 | Video generation and batch retrieval. |
+| MiniMax H3 | 5 | Task listing, deletion and batch retrieval. |
+| Wan | 4 | Wan 3 generation and batch retrieval. |
+| Kling | 12 | Motion, lip sync, talking photo, commerce, apparel, voices, elements and batch retrieval. |
+| Nano Banana | 4 | Batch retrieval. Dify v0.0.3 also accepts <code>nano-banana-2.1</code> for generation and editing; select it explicitly here after checking access and pricing. The lower-cost <code>nano-banana-2-lite</code> remains the default. |
+
+The counts come from the Dify provider manifests; a Dify action can itself support several modes. They document a scope gap, not a claim that Open WebUI cannot support those modes. Add an action only after verifying its current public API contract, cost, and one real outcome. For chat, use the native Connection instead of adding a second Tool for every model.
 
 ## Task handling
 

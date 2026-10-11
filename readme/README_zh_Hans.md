@@ -1,8 +1,8 @@
 # Ace Data Cloud × Open WebUI：从安装到第一次调用
 
-一个 Pipe Function 把 Ace Data Cloud 聊天模型加入模型选择器；17 个服务 Tool 是互相独立的 Python 文件，可按需安装。本教程已在 Open WebUI v0.11.4 英文界面实测；截图中的密钥已遮蔽。完整方法与所需 API 见[服务清单](../docs/SERVICES.md)。
+先通过 Open WebUI **原生 OpenAI 兼容 Connection** 接入 Ace Data Cloud 聊天模型，再按需安装服务 Tool。17 个服务 Tool 是互相独立的 Python 文件；如需每位聊天用户使用自己的模型 Key，可选装 Pipe Function。Tool 与 Pipe 路径已在 Open WebUI v0.11.4 英文界面实测；截图中的密钥已遮蔽。完整方法与所需 API 见[服务清单](../docs/SERVICES.md)。
 
-**发布状态：**源码已在本仓库，Open WebUI Community 投稿仍待发布。GitHub 源码导入不等于 Community 上架；上架后应在 openwebui.com 核对作者与源码再点击 Get。
+**发布状态（2026-10-12）：**源码位于待合并的 [Ace Data Cloud PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1)，Open WebUI Community 投稿尚未发布。GitHub 源码导入不等于 Community 上架；上架后应在 openwebui.com 核对作者与源码再点击 Get。
 
 ## 1. 部署 Open WebUI
 
@@ -22,13 +22,28 @@ docker run -d --name open-webui -p 127.0.0.1:3000:8080 \
 
 1. 登录 [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications)。
 2. 打开 **General Application**，点击图中 **1** 复制已有 API Key；也可点 **2 Manage Keys** 新建一把专用于 Open WebUI 的 Key。单服务 Key 只能访问该服务。
-3. 检查服务权限、当前价格与余额。如果启用 **Allowed APIs** 限制，须包含所选 Pipe/Tool 的全部接口，见[服务清单](../docs/SERVICES.md)。
+3. 检查服务权限、当前价格与余额。如果启用 **Allowed APIs** 限制，须包含所选 Connection、Pipe 或 Tool 的全部接口，见[服务清单](../docs/SERVICES.md)。管理员的共享 Connection 与用户自己的 Tool Valve 可以使用不同的 Key。
 
 ![从 General Application 复制应用 API Key](../_assets/tutorial/00-get-api-key.png)
 
 只粘贴 token 字符串，不要加 <code>Bearer </code> 或引号。以 <code>platform-</code> 开头的平台管理 token 不是这里需要的应用 API Key。不要把 Key 放入聊天、提示词、导出配置或 GitHub Issue。
 
-## 3. 管理员安装模型 Pipe 并授权用户
+## 3. 用原生 Connection 接入聊天模型
+
+[Open WebUI 官方文档](https://docs.openwebui.com/getting-started/quick-start/connect-a-provider/starting-with-functions/)建议对 OpenAI 兼容服务使用原生连接。Ace Data Cloud 已提供 <code>/v1/models</code> 与 <code>/v1/chat/completions</code>，普通模型接入不需要 Pipe。
+
+**管理员**进入 **Admin Panel → Settings → Connections → OpenAI API**，新增连接并填写：
+
+| 字段 | 值 |
+| --- | --- |
+| API Base URL | <code>https://api.acedata.cloud/v1</code> |
+| API Key | 在管理员界面私密填写 Ace Data Cloud **应用** API Key |
+
+保存并点击 **Verify Connection**。URL 必须以 <code>/v1</code> 结尾；Open WebUI 会追加 <code>/models</code> 和 <code>/chat/completions</code>。受限 Key 需允许 <code>/v1/models</code> 与 <code>/v1/chat/completions</code>。到 **Admin Panel → Settings → Models** 给目标用户或组授予所选模型的 **Read** 权限。选择账户实时模型列表中可用的模型；可用性和价格可能变化。发送 <code>Reply with the single word OK.</code>，确认回复为 <code>OK</code>。
+
+管理员配置的 Connection Key 由获准使用这些模型的用户共享，须保存在服务器配置中，并限制模型访问。下文服务 Tool 使用各用户自己的 Key 和计费开关。若每位聊天用户必须使用独立 Ace Data Cloud Key，按第 4 步安装可选 Pipe。Open WebUI 的实验性用户直连 Connection 使用不同的浏览器存储方式，还需要 CORS 配置，不能视作同一部署路径。
+
+## 4. 可选：安装个人 Key 模型 Pipe 并授权用户
 
 1. 进入 **Admin Panel → Functions → Import From Link**，导入 [functions/acedatacloud_pipe.py](../functions/acedatacloud_pipe.py) 的 GitHub 文件链接。审查源码，保存为 <code>acedatacloud_models</code>，打开 **Active**。
 2. 管理员 Valves 中的 <code>MODEL_IDS</code> 默认为 <code>gpt-5.6-luna,deepseek-v4-flash</code>。只保留你有权限使用的公开聊天模型 ID。
@@ -42,15 +57,15 @@ docker run -d --name open-webui -p 127.0.0.1:3000:8080 \
 
 ![在 Chat Controls 中设置个人模型 Key](../_assets/tutorial/08-pipe-user-key.png)
 
-发送 <code>Reply with the single word OK.</code>。实测回复为 <code>OK</code>。Pipe 用用户自己的 Key 调用 <code>/v1/chat/completions</code>；受限 Key 需允许该路径。模型列表由管理员设置，Pipe 不调用 <code>/v1/models</code>。
+发送 <code>Reply with the single word OK.</code>。实测回复为 <code>OK</code>。Pipe 用用户自己的 Key 调用 <code>/v1/chat/completions</code>；受限 Key 需允许该路径。模型列表由管理员设置，Pipe 不调用 <code>/v1/models</code>。本节截图展示已实测的个人 Key 路径。
 
-## 4. 独立安装 Google Search Tool 并完成首次搜索
+## 5. 独立安装 Google Search Tool 并完成首次搜索
 
 管理员进入 **Workspace → Tools**，从 **Create** 菜单选择 **Import From Link**，导入 [tools/google_search.py](../tools/google_search.py)。审查源码后保存为 <code>acedatacloud_google_search</code>，给目标用户或组授予 Tool **Read** 权限。其余服务文件可按需逐个安装。普通用户只需读取与执行权限；创建或导入 Tool 的权限应留给可信管理员。
 
 ![本地测试实例安装了 17 个独立 Tool](../_assets/tutorial/10-admin-tools.png)
 
-普通用户新开聊天，保留 **Ace Data Cloud/gpt-5.6-luna** 模型：
+普通用户新开聊天，选择原生 Connection 中可用的 Ace Data Cloud 聊天模型；若使用可选 Pipe，则保留 **Ace Data Cloud/gpt-5.6-luna**。截图展示 Pipe 模型：
 
 1. 点击输入框旁四菱形 **Integrations → Tools**，搜索 **Ace Data Cloud Google Search**。
 2. 点该 Tool 旁的滑块设置图标，在 **User Valves** 输入应用 Key，打开 **Allow Billable Calls**，点 **Save**。受限 Key 需允许 <code>/serp/google</code>。
@@ -68,7 +83,7 @@ Use Ace Data Cloud Google Search exactly once for the official Open WebUI docume
 
 ![普通用户真实搜索结果](../_assets/tutorial/03-google-search-result.png)
 
-## 5. 只生成一张图，再查询同一个任务
+## 6. 只生成一张图，再查询同一个任务
 
 管理员另行安装 [tools/gpt_image.py](../tools/gpt_image.py)，并授予 Tool **Read** 权限。首次示例为 <code>gpt-image-2</code>、<code>1024x1024</code>、<code>low</code>、一张图。提交前检查当前价格与余额。受限 Key 同时允许 <code>/openai/images/generations</code> 和 <code>/openai/tasks</code>。
 
@@ -81,6 +96,8 @@ Call Ace Data Cloud GPT Image generate_image exactly once with model gpt-image-2
 Tool 返回的 <code>task_id</code> 只表示任务已接受，**不表示图片已完成**。记下 ID 后立即关闭 **Allow Billable Calls**。本次实测只提交了一次，得到任务 <code>7893131f-77d0-4f93-b779-d192a74dd3e8</code>。
 
 ![一次生成调用返回任务 ID](../_assets/tutorial/05-gpt-image-submitted.png)
+
+这张真实截图下半部分还记录了一次失败的后续尝试：该聊天已不再附带 Tool，模型无法调用 <code>retrieve_task</code>；上方任务 ID 仍然有效。按下文在新聊天重新启用 Tool，不要再次生成图片。
 
 **新开聊天**，重新在 **Integrations → Tools** 启用 GPT Image，保持计费开关关闭。把下面占位符换成你自己的任务 ID：
 
@@ -98,12 +115,12 @@ Use the attached Ace Data Cloud GPT Image retrieve_task function exactly once on
 
 ## 其余 15 个服务与常见问题
 
-[服务清单](../docs/SERVICES.md)列出全部 17 个 Tool 的方法、任务查询路径和受限 Key 所需接口。媒体类 Tool 默认关闭 **Allow Billable Calls**，异步服务另提供只读 <code>retrieve_task</code>；Google Search 和 Face Transform 直接返回结果。这批文件覆盖列出的首次使用动作，不宣称覆盖整个 API 目录的所有高级动作。
+[服务清单与 Dify 对照](../docs/SERVICES.md)列出全部 17 个 Tool 的方法、任务查询路径、受限 Key 所需接口，以及 Dify 更广的动作范围。媒体类 Tool 默认关闭 **Allow Billable Calls**，异步服务另提供只读 <code>retrieve_task</code>；Google Search 和 Face Transform 直接返回结果。Nano Banana 生成/编辑可显式选择 <code>nano-banana-2.1</code>；首次使用仍默认 <code>nano-banana-2-lite</code>，换模型前先查价格。Grok 视频默认已对齐 Dify 的公开模型 <code>grok-imagine-video-1.5-fast:reverse</code>、6 秒、480p。这批文件覆盖列出的首次使用动作，不宣称覆盖 Dify 全部高级动作或整个 API 目录。
 
 | 现象 | 处理 |
 | --- | --- |
-| 普通用户看不到模型或 Tool | 管理员分别授予每个模型 ID 和 Tool 的 Read 权限。导入权限是另一项。 |
-| 提示缺少 Key 或计费授权 | 到对应 Tool 的 User Valves 设置；Pipe Key 与 Tool Key 独立。 |
+| 普通用户看不到 Connection 模型、Pipe 模型或 Tool | 管理员分别授予模型和 Tool 的 Read 权限。导入权限是另一项；Connection 还须验证 Base URL 与 <code>/v1/models</code> 权限。 |
+| 提示缺少 Key 或计费授权 | 到对应 Tool 的 User Valves 设置；共享 Connection Key 或可选 Pipe Key 与 Tool Key 独立。 |
 | HTTP 401 / 403 | 核对应用 Key、过期时间、服务授权、余额和 Allowed APIs。 |
 | HTTP 400 | 对照[服务清单](../docs/SERVICES.md)核对模型、动作与参数。 |
 | HTTP 429 | 降低并发后等待，不要打开自动付费重试。 |

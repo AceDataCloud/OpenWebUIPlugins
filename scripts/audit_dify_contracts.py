@@ -11,9 +11,12 @@ import ast
 import asyncio
 import importlib.util
 import inspect
+import json
 from pathlib import Path
 import sys
+from unittest.mock import patch
 
+import httpx
 from jsonschema import Draft202012Validator
 
 from generate_service_tools import ROOT, SERVICES
@@ -55,7 +58,10 @@ async def audit(dify_root: Path) -> int:
             return path, payload
 
         tool._post = capture
-        source = dify_root / f"{REPOS[service.slug]}Dify-provider-onboarding/tools/api_contracts.py"
+        checkout = f"{REPOS[service.slug]}Dify-provider-onboarding"
+        if service.slug == "nano_banana" and (dify_root / "NanoBananaDify-marketplace-003/tools/api_contracts.py").exists():
+            checkout = "NanoBananaDify-marketplace-003"  # Dify v0.0.3 includes nano-banana-2.1.
+        source = dify_root / checkout / "tools/api_contracts.py"
         endpoints = contracts(source)
         for action in service.actions:
             method = getattr(tool, action.name)
@@ -85,6 +91,26 @@ async def audit(dify_root: Path) -> int:
                     errors = list(Draft202012Validator(endpoint["schema"]).iter_errors(payload))
                     first.append(f"{name}: {errors[0].message if errors else 'no schema error'}")
                 failures.append(f"{service.slug}.{action.name}: {'; '.join(first) or 'no endpoint'}")
+    search_spec = importlib.util.spec_from_file_location("audit_google_search", ROOT / "tools/google_search.py")
+    assert search_spec and search_spec.loader
+    search_module = importlib.util.module_from_spec(search_spec)
+    search_spec.loader.exec_module(search_module)
+    search_tool = search_module.Tools()
+    captured = []
+
+    def search_handler(request: httpx.Request):
+        captured.append((request.url.path, json.loads(request.content)))
+        return httpx.Response(200, json={"items": []})
+
+    real_client = httpx.AsyncClient
+    with patch.object(search_module.httpx, "AsyncClient", side_effect=lambda **kwargs: real_client(transport=httpx.MockTransport(search_handler), **kwargs)):
+        await search_tool.search("Open WebUI", __user__={"valves": search_tool.UserValves(API_KEY="example-test-key", ALLOW_BILLABLE_CALLS=True)})
+    search_endpoint = contracts(dify_root / "GoogleSearchDify-provider-onboarding/tools/api_contracts.py")["serp_google"]
+    checked += 1
+    path, payload = captured[0]
+    errors = list(Draft202012Validator(search_endpoint["schema"]).iter_errors(payload))
+    if path != search_endpoint["path"] or errors:
+        failures.append(f"google_search.search: {errors[0].message if errors else 'wrong endpoint'}")
     print(f"Checked {checked} actions against Dify API schemas; failures: {len(failures)}")
     for item in failures:
         print(item)

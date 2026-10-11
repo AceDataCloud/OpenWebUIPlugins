@@ -87,7 +87,7 @@ class Pipe:
                 try:
                     async with httpx.AsyncClient(timeout=httpx.Timeout(90, connect=10)) as client:
                         async with client.stream("POST", API_URL, json=payload, headers=headers) as response:
-                            if response.status_code >= 400:
+                            if not 200 <= response.status_code < 300:
                                 raise RuntimeError(f"Ace Data Cloud HTTP {response.status_code}; check key, balance and model access.")
                             async for line in response.aiter_lines():
                                 if line.startswith("data:"):
@@ -102,7 +102,7 @@ class Pipe:
                 response = await client.post(API_URL, json=payload, headers=headers)
         except httpx.TransportError:
             raise RuntimeError("Ace Data Cloud connection failed; check request history before retrying.") from None
-        if response.status_code >= 400:
+        if not 200 <= response.status_code < 300:
             raise RuntimeError(f"Ace Data Cloud HTTP {response.status_code}; check key, balance and model access.")
         try:
             result = response.json()

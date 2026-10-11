@@ -12,6 +12,7 @@ licence: MIT
 
 from __future__ import annotations
 
+import re
 import httpx
 from pydantic import BaseModel, Field
 
@@ -79,7 +80,7 @@ class Tools:
                 )
         except httpx.TransportError:
             raise RuntimeError("Search connection failed; check request history before retrying.") from None
-        if response.status_code >= 400:
+        if not 200 <= response.status_code < 300:
             raise RuntimeError(f"Ace Data Cloud HTTP {response.status_code}; check key, balance and service access.")
         try:
             result = response.json()
@@ -90,9 +91,15 @@ class Tools:
         return self._clean(result)
 
     def _clean(self, value):
-        hidden = {"authorization", "headers", "api_key", "access_token", "refresh_token", "supplier", "upstream", "request_body"}
+        hidden = {"request", "request_body", "user_id", "actor_user_id", "credential_id", "authorization_id", "application_id", "api_key", "token", "access_token", "refresh_token", "authorization", "headers", "supplier", "supplier_id", "provider_route", "upstream", "upstream_model", "actual_model", "secret"}
         if isinstance(value, dict):
-            return {key: self._clean(item) for key, item in value.items() if key.lower() not in hidden}
+            result = {}
+            for key, item in value.items():
+                name = str(key).lower()
+                if name in hidden or re.search(r"(^internal(?:_|$)|supplier|upstream|(?:^|_)secret(?:_|$))", name):
+                    continue
+                result[key] = ({"message": "Search failed; inspect request history."} if name == "error" and item else self._clean(item))
+            return result
         if isinstance(value, list):
             return [self._clean(item) for item in value]
         return value

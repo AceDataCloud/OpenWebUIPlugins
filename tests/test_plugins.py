@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import inspect
+import json
 from pathlib import Path
 import sys
 import unittest
@@ -107,6 +108,82 @@ class ToolSafetyTests(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("authorization", result["result"])
         self.assertNotIn("supplier", result["result"]["task"])
 
+    async def test_unfinished_task_hides_preview_and_intermediate_error(self):
+        module = load(ROOT / "tools" / "gpt_image.py")
+        result = module.Tools()._result({
+            "finished_at": None,
+            "response": {"status": "running", "success": False, "error": "private", "data": {"image_url": "https://example.com/preview.png"}},
+        }, "same-task")
+        self.assertEqual(result["status"], "pending")
+        self.assertFalse(result["success"])
+        self.assertEqual(result["media_urls"], [])
+        self.assertNotIn("private", json.dumps(result))
+
+    async def test_string_response_is_parsed_before_redaction(self):
+        module = load(ROOT / "tools" / "gpt_image.py")
+        result = module.Tools()._result({
+            "finished_at": "2026-10-12T00:00:00Z",
+            "response": json.dumps({
+                "status": "succeeded",
+                "data": {"image_url": "https://example.com/final.png", "supplier_name": "private", "authorization": "private"},
+            }),
+        }, "same-task")
+        self.assertEqual(result["status"], "succeeded")
+        self.assertTrue(result["success"])
+        self.assertEqual(result["media_urls"], ["https://example.com/final.png"])
+        self.assertNotIn("private", json.dumps(result))
+
+    async def test_terminal_failure_never_returns_media_url(self):
+        module = load(ROOT / "tools" / "gpt_image.py")
+        result = module.Tools()._result({
+            "finished_at": "2026-10-12T00:00:00Z",
+            "response": {"status": "failed", "error": "private", "data": {"image_url": "https://example.com/preview.png"}},
+        }, "same-task")
+        self.assertEqual(result["status"], "failed")
+        self.assertFalse(result["success"])
+        self.assertEqual(result["media_urls"], [])
+        self.assertNotIn("private", json.dumps(result))
+
+    async def test_mixed_completed_and_running_items_stay_pending(self):
+        module = load(ROOT / "tools" / "suno.py")
+        result = module.Tools()._result({
+            "response": {"data": [
+                {"status": "succeeded", "audio_url": "https://example.com/first.mp3"},
+                {"status": "running", "audio_url": "https://example.com/preview.mp3"},
+            ]},
+        }, "same-task")
+        self.assertEqual(result["status"], "pending")
+        self.assertFalse(result["success"])
+        self.assertEqual(result["media_urls"], [])
+
+    async def test_grok_video_default_matches_published_dify_contract(self):
+        module = load(ROOT / "tools" / "grok.py")
+        tool = module.Tools()
+        captured = []
+
+        async def fake_post(path, payload, key, task_id="", extra_headers=None):
+            captured.append((path, payload))
+            return {"status": "pending", "task_id": "test-task"}
+
+        tool._post = fake_post
+        await tool.generate_video("A quiet landscape", __user__={"valves": tool.UserValves(API_KEY="test-key", ALLOW_BILLABLE_CALLS=True)})
+        self.assertEqual(captured, [("/grok/videos", {"prompt": "A quiet landscape", "model": "grok-imagine-video-1.5-fast:reverse", "duration": 6, "resolution": "480p", "async": True})])
+
+    async def test_google_search_scrubs_private_metadata(self):
+        module = load(ROOT / "tools" / "google_search.py")
+        result = module.Tools()._clean({"items": [{"title": "Public", "supplier_name": "private"}], "error": "private"})
+        self.assertEqual(result["items"], [{"title": "Public"}])
+        self.assertNotIn("private", json.dumps(result))
+
+    async def test_tool_rejects_redirect_without_leaking_response(self):
+        module = load(ROOT / "tools" / "gpt_image.py")
+        real_client = httpx.AsyncClient
+        transport = httpx.MockTransport(lambda request: httpx.Response(302, text="private", headers={"Location": "https://example.com"}))
+        with patch.object(module.httpx, "AsyncClient", side_effect=lambda **kwargs: real_client(transport=transport, **kwargs)):
+            with self.assertRaisesRegex(RuntimeError, "HTTP 302") as raised:
+                await module.Tools().retrieve_task("same-task", __user__={"valves": module.Tools.UserValves(API_KEY="test-key")})
+        self.assertNotIn("private", str(raised.exception))
+
 
 class PipeTests(unittest.IsolatedAsyncioTestCase):
     async def test_model_key_and_allowlist(self):
@@ -162,6 +239,15 @@ class PipeTests(unittest.IsolatedAsyncioTestCase):
                 )
         self.assertIn("HTTP 401", str(raised.exception))
         self.assertNotIn("test-key", str(raised.exception))
+
+    async def test_pipe_rejects_redirect(self):
+        module = load(ROOT / "functions" / "acedatacloud_pipe.py")
+        real_client = httpx.AsyncClient
+        transport = httpx.MockTransport(lambda request: httpx.Response(302, text="private"))
+        with patch.object(module.httpx, "AsyncClient", side_effect=lambda **kwargs: real_client(transport=transport, **kwargs)):
+            with self.assertRaisesRegex(RuntimeError, "HTTP 302") as raised:
+                await module.Pipe().pipe({"model": "acedatacloud_models.gpt-5.6-luna", "messages": [{"role": "user", "content": "Hi"}]}, __user__={"valves": module.Pipe.UserValves(API_KEY="test-key")})
+        self.assertNotIn("private", str(raised.exception))
 
 
 if __name__ == "__main__":
