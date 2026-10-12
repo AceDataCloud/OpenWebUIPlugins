@@ -21,7 +21,19 @@ That optional audit needs <code>jsonschema</code> and the 17 local Dify source c
 
 The current result tests also cover pending tasks with preview URLs, intermediate errors, completed JSON-string responses with private metadata, terminal failures, and Grok's public first-run model. A pending or failed task exposes no final <code>media_urls</code>. HTTP redirects are rejected as non-success responses; billable calls are never retried automatically.
 
-## Open WebUI v0.11.4 local acceptance
+## Open WebUI v0.12.0 current-source acceptance
+
+On 2026-10-12, the current plugin files at code commit `d209255` were imported into a separate disposable instance of the official **v0.12.0-slim** image. Its build commit was `15818d88fd7bde1b73de33590f50d15d21e8d7c1`; the linux/amd64 registry manifest was `sha256:e244f99ece7e9e2f40ee75a26ae0014a0fd74c2ee404059501a15edef7c3ad93`. The [redacted acceptance record](evidence/openwebui-v0120-20261012.json) distinguishes these checks:
+
+- The administrator imported **17/17 Tools** and the Pipe. Open WebUI generated all **40 action schemas** without exposing `__user__` as a model parameter.
+- With Tool creation/import disabled for ordinary users, their create requests returned **401**. Before each Read grant, the intended user’s User Valve schema request returned **401**; afterward it returned **200**, the key input was masked, and **Allow Billable Calls** defaulted off. A second ordinary user without grants still saw no Tools and received **401** on each User Valve schema. The intended user saw all 17 Tools without receiving code creation permission.
+- The Pipe’s two models were absent before model Read grants and visible afterward; the ungranted user still saw none. No new Pipe model chat was made.
+- Open WebUI’s own native **Verify Connection** against `https://api.acedata.cloud/v1` returned **200** and **108 models**. The intended ordinary user saw `gpt-5.6-luna` only after its separate model Read grant. This proves native discovery and access, not a new paid Ace model chat or browser-chat acceptance.
+- A deterministic **localhost model fixture** exercised the authenticated Socket.IO/native chat workflow and called the installed GPT Image `retrieve_task` exactly once in the recorded run, with the user’s billable switch off. The real Ace lookup returned `succeeded`, `success: true`, the existing task `7893131f-77d0-4f93-b779-d192a74dd3e8`, and one media URL; the host emitted a completed chat event. Separately, the same task’s PNG passed an HTTP 200 HEAD check. The model fixture made two local completion requests; **no new Ace model completion, search or media generation was submitted**. This is current-host read-only Tool evidence, not paid-model or new-generation evidence.
+
+All of these are **D0 local acceptance**. Community Get/Import, public search, paid native-model/browser first calls, the other current-host service actions, and new billing checks remain separate gates. The README API-key link now uses the platform’s `opensource / referral / evergreen` attribution convention with `utm_content=openwebui_readme_api_key`; this records a shared distribution source group, not Community installs or historical conversion.
+
+## Open WebUI v0.11.4 earlier local acceptance
 
 The local test used a fresh Open WebUI v0.11.4 container, one admin and one ordinary user. The admin installed the Pipe and 17 Tool files, then granted read access to the two Pipe model IDs and each Tool. The ordinary user saw two Ace models in the model picker and 17 independent Tools in Integrations. Before the read grants, the ordinary user's API model and Tool lists were empty. The native Connection instructions follow [Open WebUI's official OpenAI-compatible guide](https://docs.openwebui.com/getting-started/quick-start/connect-a-provider/starting-with-openai-compatible/) and Ace Data Cloud's existing [Open WebUI customer guide](https://platform.acedata.cloud/documents); the local browser calls below exercised the optional Pipe path. Do not infer a new native Connection live-call proof from this table.
 

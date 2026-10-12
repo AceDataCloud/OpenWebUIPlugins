@@ -1,6 +1,6 @@
 # Ace Data Cloud for Open WebUI
 
-Connect Ace Data Cloud chat models with Open WebUI's **native OpenAI-compatible Connection**, then install only the service Tools your users need. Each of the 17 Tools is a separate Python file and can be imported independently. An optional Pipe Function offers a personal model key for each user. The Tool and Pipe paths were tested on Open WebUI v0.11.4.
+Connect Ace Data Cloud chat models with Open WebUI's **native OpenAI-compatible Connection**, then install only the service Tools your users need. Each of the 17 Tools is a separate Python file and can be imported independently. An optional Pipe Function offers a personal model key for each user. Current-source import, ordinary-user permissions, native model discovery and an existing-task Tool lookup passed on Open WebUI v0.12.0-slim; the browser screenshots and paid first-call examples below are from the earlier v0.11.4 test. See the [acceptance boundaries](docs/DEVELOPMENT.md).
 
 [简体中文教程](readme/README_zh_Hans.md) · [Service actions and API permissions](docs/SERVICES.md) · [Current models and pricing](https://platform.acedata.cloud/models)
 
@@ -22,7 +22,7 @@ Open http://localhost:3000 and create the first account, which becomes the admin
 
 ## 2. Get the right Ace Data Cloud key
 
-1. Sign in at [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications).
+1. Sign in at [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=openwebui_readme_api_key).
 2. Open **General Application**. Copy its API key with the copy icon (**1**) or choose **Manage Keys** (**2**) to create a separate Open WebUI key. A service-specific key works only for that service.
 3. Check your service access, current price and balance. If you enable **Allowed APIs** for a restricted key, include every endpoint the chosen Connection, Pipe or Tool calls. The [service table](docs/SERVICES.md) names them. A shared administrator Connection and each user's Tool Valve may use different keys.
 

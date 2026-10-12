@@ -1,6 +1,6 @@
 # Ace Data Cloud × Open WebUI：从安装到第一次调用
 
-先通过 Open WebUI **原生 OpenAI 兼容 Connection** 接入 Ace Data Cloud 聊天模型，再按需安装服务 Tool。17 个服务 Tool 是互相独立的 Python 文件；如需每位聊天用户使用自己的模型 Key，可选装 Pipe Function。Tool 与 Pipe 路径已在 Open WebUI v0.11.4 英文界面实测；截图中的密钥已遮蔽。完整方法与所需 API 见[服务清单](../docs/SERVICES.md)。
+先通过 Open WebUI **原生 OpenAI 兼容 Connection** 接入 Ace Data Cloud 聊天模型，再按需安装服务 Tool。17 个服务 Tool 是互相独立的 Python 文件；如需每位聊天用户使用自己的模型 Key，可选装 Pipe Function。当前源码在 v0.12.0-slim 通过导入、普通用户权限、原生模型发现和既有任务查询；下文浏览器截图与收费首调示例仍来自之前的 v0.11.4 实测，密钥已遮蔽。具体证据边界见[验收记录](../docs/DEVELOPMENT.md)，完整方法与所需 API 见[服务清单](../docs/SERVICES.md)。
 
 **发布状态（2026-10-12）：**源码位于待合并的 [Ace Data Cloud PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1)，Open WebUI Community 投稿尚未发布。GitHub 源码导入不等于 Community 上架；上架后应在 openwebui.com 核对作者与源码再点击 Get。
 
@@ -20,7 +20,7 @@ docker run -d --name open-webui -p 127.0.0.1:3000:8080 \
 
 ## 2. 获取正确的应用 API Key
 
-1. 登录 [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications)。
+1. 登录 [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=openwebui_readme_api_key)。
 2. 打开 **General Application**，点击图中 **1** 复制已有 API Key；也可点 **2 Manage Keys** 新建一把专用于 Open WebUI 的 Key。单服务 Key 只能访问该服务。
 3. 检查服务权限、当前价格与余额。如果启用 **Allowed APIs** 限制，须包含所选 Connection、Pipe 或 Tool 的全部接口，见[服务清单](../docs/SERVICES.md)。管理员的共享 Connection 与用户自己的 Tool Valve 可以使用不同的 Key。
 

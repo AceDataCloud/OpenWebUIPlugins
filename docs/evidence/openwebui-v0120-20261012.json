@@ -1,0 +1,378 @@
+{
+  "as_of": "2026-10-12 Asia/Shanghai",
+  "plugin_code_commit": "d2092554f376506fc389c88a2c5252f565ffe12a",
+  "official_host_tag": "v0.12.0-slim",
+  "official_host_commit": "15818d88fd7bde1b73de33590f50d15d21e8d7c1",
+  "official_linux_amd64_manifest_digest": "sha256:e244f99ece7e9e2f40ee75a26ae0014a0fd74c2ee404059501a15edef7c3ad93",
+  "scope": "Local D0 acceptance, not Community distribution or a new paid Ace chat/media run",
+  "permissions": {
+    "as_of": "2026-10-12 Asia/Shanghai",
+    "host_version": "v0.12.0-slim",
+    "billable_submissions": 0,
+    "tools": [
+      {
+        "id": "acedatacloud_face_transform",
+        "source_version": "0.1.0",
+        "methods": [
+          "analyze_face",
+          "beautify_face"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_fish_audio",
+        "source_version": "0.1.0",
+        "methods": [
+          "retrieve_task",
+          "text_to_speech"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_flux",
+        "source_version": "0.1.0",
+        "methods": [
+          "edit_image",
+          "generate_image",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_google_search",
+        "source_version": "0.1.0",
+        "methods": [
+          "search"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_gpt_image",
+        "source_version": "0.1.0",
+        "methods": [
+          "edit_image",
+          "generate_image",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_grok",
+        "source_version": "0.1.0",
+        "methods": [
+          "ask_grok",
+          "generate_video",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_happy_horse",
+        "source_version": "0.1.0",
+        "methods": [
+          "generate_video",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_kling",
+        "source_version": "0.1.0",
+        "methods": [
+          "generate_video",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_midjourney",
+        "source_version": "0.1.0",
+        "methods": [
+          "imagine",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_minimax_h3",
+        "source_version": "0.1.0",
+        "methods": [
+          "generate_video",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_nano_banana",
+        "source_version": "0.1.0",
+        "methods": [
+          "edit_image",
+          "generate_image",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_qwen_image",
+        "source_version": "0.1.0",
+        "methods": [
+          "generate_image",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_seedance",
+        "source_version": "0.1.0",
+        "methods": [
+          "generate_video",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_seedream",
+        "source_version": "0.1.0",
+        "methods": [
+          "edit_image",
+          "generate_image",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_suno",
+        "source_version": "0.1.0",
+        "methods": [
+          "generate_lyrics",
+          "generate_music",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_veo",
+        "source_version": "0.1.0",
+        "methods": [
+          "extend_video",
+          "generate_video",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      },
+      {
+        "id": "acedatacloud_wan",
+        "source_version": "0.1.0",
+        "methods": [
+          "generate_video",
+          "retrieve_task"
+        ],
+        "reader_create_http": 401,
+        "before_read_grant_http": 401,
+        "after_read_grant_http": 200,
+        "outsider_http": 401,
+        "billable_default": false,
+        "masked_key_field": true
+      }
+    ],
+    "reader_tool_count": 17,
+    "outsider_tool_count": 0,
+    "pipe": {
+      "type": "pipe",
+      "reader_create_http": 401,
+      "reader_models_before_grants": 0,
+      "reader_models_after_grants": [
+        "acedatacloud_models.gpt-5.6-luna",
+        "acedatacloud_models.deepseek-v4-flash"
+      ],
+      "outsider_models_after_grants": 0
+    }
+  },
+  "native_ace_connection": {
+    "as_of": "2026-10-12 Asia/Shanghai",
+    "host_version": "v0.12.0-slim",
+    "native_connection_verify_http": 200,
+    "model_count": 108,
+    "has_gpt_5_6_luna": true,
+    "chat_submissions": 0,
+    "reader_model_discovery_http": 200,
+    "reader_has_native_gpt_5_6_luna": true,
+    "model_read_grant_required": true
+  },
+  "native_tool_loop": {
+    "as_of": "2026-10-12 Asia/Shanghai",
+    "host_version": "v0.12.0-slim",
+    "transport": "authenticated Socket.IO + native chat completion",
+    "model": "deterministic localhost fixture",
+    "ack_status": true,
+    "chat_task_count": 1,
+    "chat_completed_event": true,
+    "events": [
+      {
+        "type": "chat:list",
+        "done": null
+      },
+      {
+        "type": "chat:active",
+        "done": null
+      },
+      {
+        "type": "chat:title",
+        "done": null
+      },
+      {
+        "type": "response:completion",
+        "done": null
+      },
+      {
+        "type": "response:completion",
+        "done": null
+      },
+      {
+        "type": "chat:completion",
+        "done": null
+      },
+      {
+        "type": "chat:completion",
+        "done": null
+      },
+      {
+        "type": "response:completion",
+        "done": null
+      },
+      {
+        "type": "response:completion",
+        "done": null
+      },
+      {
+        "type": "response:completion",
+        "done": null
+      },
+      {
+        "type": "response:completion",
+        "done": null
+      },
+      {
+        "type": "response:completion",
+        "done": null
+      },
+      {
+        "type": "response:completion",
+        "done": null
+      },
+      {
+        "type": "chat:completion",
+        "done": null
+      },
+      {
+        "type": "chat:completion",
+        "done": null
+      },
+      {
+        "type": "chat:list",
+        "done": null
+      },
+      {
+        "type": "chat:completion",
+        "done": true
+      }
+    ],
+    "fixture_stats": {
+      "model_lists": 0,
+      "chat_requests": 5,
+      "tool_call_requested": 3,
+      "tool_result_status": "succeeded",
+      "tool_result_success": true,
+      "tool_result_task_id": "7893131f-77d0-4f93-b779-d192a74dd3e8",
+      "tool_result_media_count": 1
+    },
+    "fixture_delta": {
+      "model_lists": 0,
+      "chat_requests": 2,
+      "tool_call_requested": 1
+    },
+    "new_ace_chat_calls": 0,
+    "new_media_generations": 0,
+    "tool_billable_switch": false
+  }
+}
