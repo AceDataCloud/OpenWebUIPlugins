@@ -2,9 +2,23 @@
 
 Connect Ace Data Cloud chat models with Open WebUI's **native OpenAI-compatible Connection**, then install only the service Tools your users need. Each of the 17 Tools is a separate Python file and can be imported independently. An optional Pipe Function offers a personal model key for each user. Current-source import, ordinary-user permissions, native model discovery and an existing-task Tool lookup passed on Open WebUI v0.12.0-slim; the browser screenshots and paid first-call examples below are from the earlier v0.11.4 test. See the [acceptance boundaries](docs/DEVELOPMENT.md).
 
-[简体中文教程](readme/README_zh_Hans.md) · [Service actions and API permissions](docs/SERVICES.md) · [Current models and pricing](https://platform.acedata.cloud/models)
+[简体中文教程](readme/README_zh_Hans.md) · [Service actions and API permissions](docs/SERVICES.md) · [Current models and pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=openwebui_readme_pricing)
 
-**Publication status (2026-10-12):** this source is in [Ace Data Cloud PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1), awaiting merge. Open WebUI Community posts are pending. A GitHub source import is not a Community listing. Once posts are published, verify the author and source code on openwebui.com before clicking Get.
+**Publication status (2026-10-18):** this source is in [Ace Data Cloud PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1), awaiting merge. Open WebUI Community posts are pending. A GitHub source import is not a Community listing. Once posts are published, verify the author and source code on openwebui.com before clicking Get.
+
+## Find a service independently
+
+Users usually search for a service name. The proposed Community titles therefore start with **Suno**, **Seedance**, **Happy Horse**, **GPT Image**, or **Nano Banana**, followed by **by Ace Data Cloud**. These are Ace integrations, not official plugins from those services' creators. Each installs as one Tool file; you do not need to import the other services or run a Pipelines server. As of **2026-10-18**, no verified Community post/Get URL is available for these entries, so the official install step remains pending.
+
+| Search for | Separate walkthrough | 中文教程 | Source |
+| --- | --- | --- | --- |
+| Suno, music, lyrics | [Suno](readme/services/suno.md) | [Suno 中文](readme/services/zh-Hans/suno.md) | [One Tool](tools/suno.py) |
+| Seedance, video | [Seedance](readme/services/seedance.md) | [Seedance 中文](readme/services/zh-Hans/seedance.md) | [One Tool](tools/seedance.py) |
+| HappyHorse, Happy Horse, video | [Happy Horse](readme/services/happy_horse.md) | [Happy Horse 中文](readme/services/zh-Hans/happy_horse.md) | [One Tool](tools/happy_horse.py) |
+| GPT Image, image editing | [GPT Image](readme/services/gpt_image.md) | [GPT Image 中文](readme/services/zh-Hans/gpt_image.md) | [One Tool](tools/gpt_image.py) |
+| Nano Banana, image editing | [Nano Banana](readme/services/nano_banana.md) | [Nano Banana 中文](readme/services/zh-Hans/nano_banana.md) | [One Tool](tools/nano_banana.py) |
+
+The walkthroughs include official publication status, the exact Tool, registration/General Application, copy/create Key screenshots, per-user Key placement, a single intended submit, same-ID retrieval, usage and troubleshooting. [Per-entry publication drafts and source hashes](docs/community/catalog.json) are ready for the existing Ace account's manual duplicate check and Share flow. Suggested tags and categories must be confirmed in the actual website form; they are not proof of indexing or search rank. Older screenshots below retain the earlier Ace-first names.
 
 ## 1. Start Open WebUI and review the source
 
@@ -71,7 +85,7 @@ As an administrator, open **Workspace → Tools**, use the **Create** menu's **I
 
 As a regular user:
 
-1. In a new chat, select a working Ace Data Cloud chat model from the native Connection, or **Ace Data Cloud/gpt-5.6-luna** if using the optional Pipe. Click the four-diamond **Integrations** icon next to the composer → **Tools**. Search for **Ace Data Cloud Google Search**. The screenshots show the tested Pipe model.
+1. In a new chat, select a working Ace Data Cloud chat model from the native Connection, or **Ace Data Cloud/gpt-5.6-luna** if using the optional Pipe. Click the four-diamond **Integrations** icon next to the composer → **Tools**. Search for **Google Search by Ace Data Cloud**. The screenshots show the tested Pipe model.
 2. Click its sliders icon. In **User Valves**, enter your application key and turn on **Allow Billable Calls**; click **Save**. For a restricted key, allow <code>/serp/google</code>.
 3. Toggle this Tool on for the chat and send the exact first-run prompt below. Open WebUI's **Native** tool-calling mode is the tested default.
 
@@ -80,7 +94,7 @@ As a regular user:
 ![Personal key is masked and billable calls are an explicit switch](./_assets/tutorial/04-user-valves.png)
 
 ~~~text
-Use Ace Data Cloud Google Search exactly once for the official Open WebUI documentation about Tools. Return the first result title and URL; do not make any other search calls.
+Use Google Search by Ace Data Cloud exactly once for the official Open WebUI documentation about Tools. Return the first result title and URL; do not make any other search calls.
 ~~~
 
 The tested result contained <code>Tools / Open WebUI</code> and https://docs.openwebui.com/features/extensibility/plugin/tools/. Open **View Result from search** to inspect the tool output. One matching usage record for the test key had HTTP 200 and deducted **0.009 Credits** under that account's discount; check your current price. Turn **Allow Billable Calls** off when you are finished.
@@ -91,10 +105,10 @@ The tested result contained <code>Tools / Open WebUI</code> and https://docs.ope
 
 Install [tools/gpt_image.py](tools/gpt_image.py) as a separate Tool and grant read access. This example uses one <code>gpt-image-2</code> image at <code>1024x1024</code>, quality <code>low</code>. Check current pricing and balance first. If your key restricts APIs, allow both <code>/openai/images/generations</code> **and** <code>/openai/tasks</code>.
 
-In a new chat, enable only **Ace Data Cloud GPT Image** under **Integrations → Tools**. Open its sliders icon, paste your personal key, and turn on **Allow Billable Calls**. Send:
+In a new chat, enable only **GPT Image by Ace Data Cloud** under **Integrations → Tools**. Open its sliders icon, paste your personal key, and turn on **Allow Billable Calls**. Send:
 
 ~~~text
-Call Ace Data Cloud GPT Image generate_image exactly once with model gpt-image-2, size 1024x1024, quality low, and prompt: A single lime green origami boat on a plain cream background, clean studio photograph, no text. Report the task ID. Do not call generate_image again or poll automatically.
+Call GPT Image by Ace Data Cloud generate_image exactly once with model gpt-image-2, size 1024x1024, quality low, and prompt: A single lime green origami boat on a plain cream background, clean studio photograph, no text. Report the task ID. Do not call generate_image again or poll automatically.
 ~~~
 
 The generation Tool returns a <code>task_id</code>. **That is an accepted task, not a completed image.** Record the ID and turn **Allow Billable Calls** off. The actual test submitted exactly one new generation and returned task <code>7893131f-77d0-4f93-b779-d192a74dd3e8</code>.
@@ -103,10 +117,10 @@ The generation Tool returns a <code>task_id</code>. **That is an accepted task, 
 
 The lower part of this real capture shows an unsuccessful follow-up: the Tool was no longer attached to that chat, so the model could not call <code>retrieve_task</code>. The submitted task ID remained valid. Re-enable the Tool in a new chat as follows; do not regenerate the image.
 
-Open a **new chat**, re-enable **Ace Data Cloud GPT Image** in **Integrations → Tools**, and keep billable calls disabled. Use your own task ID in this read-only prompt:
+Open a **new chat**, re-enable **GPT Image by Ace Data Cloud** in **Integrations → Tools**, and keep billable calls disabled. Use your own task ID in this read-only prompt:
 
 ~~~text
-Use the attached Ace Data Cloud GPT Image retrieve_task function exactly once on task ID <your-task-id>. Report status, success, and the first media URL. This is a read-only lookup. Never generate a new image.
+Use the attached GPT Image by Ace Data Cloud retrieve_task function exactly once on task ID <your-task-id>. Report status, success, and the first media URL. This is a read-only lookup. Never generate a new image.
 ~~~
 
 If the status is <code>pending</code>, repeat **only** <code>retrieve_task</code> with the same ID later. If the model says the tool is unavailable, re-enable the Tool in the chat before asking again. Wait for <code>status: succeeded</code> and <code>success: true</code>, then open the returned image URL. A green chat reply alone does not prove that a media task completed.

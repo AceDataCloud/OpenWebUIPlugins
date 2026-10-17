@@ -1,12 +1,13 @@
 """
-title: Ace Data Cloud Veo
+title: Veo by Ace Data Cloud
 author: Ace Data Cloud
 author_url: https://platform.acedata.cloud
 git_url: https://github.com/AceDataCloud/OpenWebUIPlugins
-description: Veo service actions through Ace Data Cloud using a personal API key.
+description: Use Veo through Ace Data Cloud with a personal application API key.
+tags: veo, ace-data-cloud
 required_open_webui_version: 0.11.4
 requirements: httpx
-version: 0.1.0
+version: 0.1.1
 licence: MIT
 """
 

@@ -1,0 +1,31 @@
+{
+  "images": [
+    {
+      "file": "_assets/tutorial/get-api-key-en.png",
+      "sha256": "b63787f2bd15af82fef9ab61c99e11c454355ac86e91f7f94559386b795069b7",
+      "source_url": "https://raw.githubusercontent.com/AceDataCloud/SunoDify/8d3d03570e73324220f111f7fe343da0792a8071/_assets/tutorial/get-api-key-en.png",
+      "source_commit": "8d3d03570e73324220f111f7fe343da0792a8071",
+      "reviewed_on": "2026-10-18",
+      "original_capture_date": "not independently recorded",
+      "kind": "redacted Ace Console reference screenshot reused without edits",
+      "limits": "Create dialog example name says Dify tutorial; guides instruct Open WebUI service-specific name. No visible real credential. Not Open WebUI run evidence."
+    },
+    {
+      "file": "_assets/tutorial/create-api-key-en.png",
+      "sha256": "977c06780b36ca33f2fb3ba546e2594efe5895400e4cb58d842eb564c3bb09da",
+      "source_url": "https://raw.githubusercontent.com/AceDataCloud/SunoDify/8d3d03570e73324220f111f7fe343da0792a8071/_assets/tutorial/create-api-key-en.png",
+      "source_commit": "8d3d03570e73324220f111f7fe343da0792a8071",
+      "reviewed_on": "2026-10-18",
+      "original_capture_date": "not independently recorded",
+      "kind": "redacted Ace Console reference screenshot reused without edits",
+      "limits": "Create dialog example name says Dify tutorial; guides instruct Open WebUI service-specific name. No visible real credential. Not Open WebUI run evidence."
+    }
+  ],
+  "publisher_icon": {
+    "file": "_assets/acedata-mark.png",
+    "origin": "existing Ace first-party PlatformFrontend/src/assets/images/logos/acedata-mark.png",
+    "sha256": "38f9df55430ed2bb3342cbf9dbbd0a6f17524e0f2f115b74266d3474d6c93781",
+    "reviewed_on": "2026-10-18",
+    "use": "Ace publisher identity only; no third-party service logo or official-creator endorsement"
+  }
+}

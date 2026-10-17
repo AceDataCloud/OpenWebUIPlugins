@@ -96,6 +96,15 @@ SERVICES = (
 )
 
 
+DISCOVERY = {
+    "suno": ("Generate Suno music or lyrics through Ace Data Cloud; retrieve the same music task for final audio.", "suno, music, lyrics, audio, ace-data-cloud"),
+    "seedance": ("Create Seedance text-to-video tasks through Ace Data Cloud and retrieve completed video links.", "seedance, video, text-to-video, ace-data-cloud"),
+    "happy_horse": ("Create Happy Horse (HappyHorse) text-to-video tasks through Ace Data Cloud and query final videos.", "happyhorse, happy-horse, video, text-to-video, ace-data-cloud"),
+    "gpt_image": ("Generate or edit GPT Image pictures through Ace Data Cloud and retrieve the same image task.", "gpt-image, image-generation, image-editing, ace-data-cloud"),
+    "nano_banana": ("Generate or edit Nano Banana images through Ace Data Cloud and retrieve completed image tasks.", "nano-banana, image-generation, image-editing, ace-data-cloud"),
+}
+
+
 PARAM_DOCS = {
     "prompt": "Text instruction. One call may incur service charges.",
     "text": "Text to synthesize.",
@@ -119,14 +128,15 @@ PARAM_DOCS = {
 
 
 COMMON = '''"""
-title: Ace Data Cloud {title}
+title: {title} by Ace Data Cloud
 author: Ace Data Cloud
 author_url: https://platform.acedata.cloud
 git_url: https://github.com/AceDataCloud/OpenWebUIPlugins
-description: {title} service actions through Ace Data Cloud using a personal API key.
+description: {description}
+tags: {tags}
 required_open_webui_version: 0.11.4
 requirements: httpx
-version: 0.1.0
+version: 0.1.1
 licence: MIT
 """
 
@@ -279,7 +289,11 @@ def render_action(action: Action) -> str:
 
 
 def render_service(service: Service) -> str:
-    parts = [COMMON.format(title=service.title).rstrip()]
+    description, tags = DISCOVERY.get(service.slug, (
+        f"Use {service.title} through Ace Data Cloud with a personal application API key.",
+        f"{service.slug.replace('_', '-')}, ace-data-cloud",
+    ))
+    parts = [COMMON.format(title=service.title, description=description, tags=tags).rstrip()]
     if service.task_path:
         parts.append(
             "    async def retrieve_task(self, task_id: str, __user__: dict | None = None) -> dict:\n"

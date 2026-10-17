@@ -56,4 +56,4 @@ A generation method submits one request. If it returns <code>task_id</code>, its
 
 If a service returns a synchronous result, the Tool uses <code>status: returned</code> with the response in <code>result</code>. Other possible statuses are <code>pending</code>, <code>succeeded</code> and <code>failed</code>. Do not resubmit a generation on a timeout until you inspect request history for an accepted task.
 
-These initial Tools expose the listed actions. The larger Ace Data Cloud API catalog may offer more actions and model variants. Check the current [model catalog](https://platform.acedata.cloud/models) and [service documentation](https://platform.acedata.cloud/documents) before choosing a different model or higher resolution.
+These initial Tools expose the listed actions. The larger Ace Data Cloud API catalog may offer more actions and model variants. Check the current [model catalog](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=openwebui_readme_pricing) and [service documentation](https://platform.acedata.cloud/documents) before choosing a different model or higher resolution.

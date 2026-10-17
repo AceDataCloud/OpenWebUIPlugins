@@ -7,6 +7,7 @@ Open WebUI's native OpenAI-compatible Connection is the default chat-model integ
 ~~~bash
 python3 scripts/generate_service_tools.py
 python3 scripts/generate_service_tools.py --check
+python3 scripts/build_community_materials.py --check
 python3 -m compileall -q functions tools scripts
 python3 -m unittest discover -s tests -v
 ~~~
@@ -20,6 +21,14 @@ python3 scripts/audit_dify_contracts.py /path/to/AceDataCloud/.worktrees
 That optional audit needs <code>jsonschema</code> and the 17 local Dify source checkouts. It makes no Ace Data Cloud API calls. On 2026-10-12, 25 exposed primary action payloads passed their service schemas, including Google Search's intercepted HTTP payload; the Nano Banana check uses the v0.0.3 contract when that checkout is present. Fish Audio's selected model is an HTTP header, so the focused unit test checks that detail separately. This audit validates payload shape, not the full Dify action surface or live service behavior; see the [per-service comparison](SERVICES.md#dify-scope-comparison).
 
 The current result tests also cover pending tasks with preview URLs, intermediate errors, completed JSON-string responses with private metadata, terminal failures, and Grok's public first-run model. A pending or failed task exposes no final <code>media_urls</code>. HTTP redirects are rejected as non-success responses; billable calls are never retried automatically.
+
+## Service discovery material, 2026-10-18
+
+Tool frontmatter now uses service-first titles such as **Suno by Ace Data Cloud**, action-specific descriptions and relevant tag hints. Tool versions are **0.1.1**; Pipe remains **0.1.0**. The generation payloads, fixed API host, keys, opt-in switches and task semantics are unchanged. Old acceptance screenshots use earlier names; no current-title Community or host/UI execution is inferred from them.
+
+`scripts/build_community_materials.py` generates five distinct local drafts, ten bilingual service walkthroughs and a catalog of exact Tool SHA-256 hashes. Its `--check` mode detects source/material drift. It makes no API call, website search or publication. The catalog's official listing fields stay null until a real public post/Get URL is verified. Categories/tags are suggestions for the actual form, not a claimed official schema or ranking.
+
+The two Key reference images are byte-preserved, redacted Ace Console screenshots from a pinned SunoDify commit; [_assets/tutorial/key-images-source.json](../_assets/tutorial/key-images-source.json) records provenance. The create dialog says `Dify tutorial`; the Open WebUI guides explicitly instruct an Open WebUI-specific name. Existing Open WebUI screenshot scope and dates remain unchanged.
 
 ## Open WebUI v0.12.0 current-source acceptance
 

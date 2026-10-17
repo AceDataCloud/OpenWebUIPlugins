@@ -1,12 +1,13 @@
 """
-title: Ace Data Cloud Nano Banana
+title: Nano Banana by Ace Data Cloud
 author: Ace Data Cloud
 author_url: https://platform.acedata.cloud
 git_url: https://github.com/AceDataCloud/OpenWebUIPlugins
-description: Nano Banana service actions through Ace Data Cloud using a personal API key.
+description: Generate or edit Nano Banana images through Ace Data Cloud and retrieve completed image tasks.
+tags: nano-banana, image-generation, image-editing, ace-data-cloud
 required_open_webui_version: 0.11.4
 requirements: httpx
-version: 0.1.0
+version: 0.1.1
 licence: MIT
 """
 

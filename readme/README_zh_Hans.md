@@ -2,6 +2,22 @@
 
 先通过 Open WebUI **原生 OpenAI 兼容 Connection** 接入 Ace Data Cloud 聊天模型，再按需安装服务 Tool。17 个服务 Tool 是互相独立的 Python 文件；如需每位聊天用户使用自己的模型 Key，可选装 Pipe Function。当前源码在 v0.12.0-slim 通过导入、普通用户权限、原生模型发现和既有任务查询；下文浏览器截图与收费首调示例仍来自之前的 v0.11.4 实测，密钥已遮蔽。具体证据边界见[验收记录](../docs/DEVELOPMENT.md)，完整方法与所需 API 见[服务清单](../docs/SERVICES.md)。
 
+## 按服务名独立发现和安装
+
+本次拟发布标题以用户搜索的服务名开头，采用 **Suno / Seedance / Happy Horse / GPT Image / Nano Banana by Ace Data Cloud**。这是 Ace 提供的集成，不冒充服务创建方官方。每项只需一个 Tool 文件，无须安装其他服务或另开 Pipelines。
+
+**2026-10-18：Community 正式帖/Get 链接尚未核实，不把手动导入算官方上线。** 已准备每项独立教程与稿件；正式发布后须由现有账号人工查重，核对作者、源码及网站接受的标签和分类。
+
+| 搜索服务 | 独立中文教程 | English | 单独源码 |
+| --- | --- | --- | --- |
+| Suno / 音乐 / 歌词 | [Suno](services/zh-Hans/suno.md) | [English](services/suno.md) | [Tool](../tools/suno.py) |
+| Seedance / 视频 | [Seedance](services/zh-Hans/seedance.md) | [English](services/seedance.md) | [Tool](../tools/seedance.py) |
+| HappyHorse / Happy Horse | [Happy Horse](services/zh-Hans/happy_horse.md) | [English](services/happy_horse.md) | [Tool](../tools/happy_horse.py) |
+| GPT Image / 图片编辑 | [GPT Image](services/zh-Hans/gpt_image.md) | [English](services/gpt_image.md) | [Tool](../tools/gpt_image.py) |
+| Nano Banana / 图片编辑 | [Nano Banana](services/zh-Hans/nano_banana.md) | [English](services/nano_banana.md) | [Tool](../tools/nano_banana.py) |
+
+每份教程包含正式安装入口状态、注册/登录、Applications/通用应用、复制或创建 Key 真实脱敏图、个人 Key 粘贴位置、单次动作/同任务查询、结果、账单和排错。发布者材料见[独立条目清单](../docs/community/catalog.json)。下方历史截图保留旧 Ace-first 名称，不是新标题已上架的证据。
+
 **发布状态（2026-10-12）：**源码位于待合并的 [Ace Data Cloud PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1)，Open WebUI Community 投稿尚未发布。GitHub 源码导入不等于 Community 上架；上架后应在 openwebui.com 核对作者与源码再点击 Get。
 
 ## 1. 部署 Open WebUI
@@ -67,7 +83,7 @@ docker run -d --name open-webui -p 127.0.0.1:3000:8080 \
 
 普通用户新开聊天，选择原生 Connection 中可用的 Ace Data Cloud 聊天模型；若使用可选 Pipe，则保留 **Ace Data Cloud/gpt-5.6-luna**。截图展示 Pipe 模型：
 
-1. 点击输入框旁四菱形 **Integrations → Tools**，搜索 **Ace Data Cloud Google Search**。
+1. 点击输入框旁四菱形 **Integrations → Tools**，搜索 **Google Search by Ace Data Cloud**。
 2. 点该 Tool 旁的滑块设置图标，在 **User Valves** 输入应用 Key，打开 **Allow Billable Calls**，点 **Save**。受限 Key 需允许 <code>/serp/google</code>。
 3. 打开该 Tool 的开关，发送下面的可复制提示词。实测使用默认的 **Native** 工具调用模式。
 
@@ -76,7 +92,7 @@ docker run -d --name open-webui -p 127.0.0.1:3000:8080 \
 ![个人 Key 已遮蔽，计费调用需手动开启](../_assets/tutorial/04-user-valves.png)
 
 ~~~text
-Use Ace Data Cloud Google Search exactly once for the official Open WebUI documentation about Tools. Return the first result title and URL; do not make any other search calls.
+Use Google Search by Ace Data Cloud exactly once for the official Open WebUI documentation about Tools. Return the first result title and URL; do not make any other search calls.
 ~~~
 
 实测返回标题 <code>Tools / Open WebUI</code> 与官方文档链接 https://docs.openwebui.com/features/extensibility/plugin/tools/。点 **View Result from search** 可查看 Tool 返回值。同一测试 Key 恰好匹配一条 HTTP 200 的账单记录，该账户折扣后扣费 **0.009 Credits**；你的价格以当前账单为准。用完后关闭 **Allow Billable Calls**。
@@ -87,10 +103,10 @@ Use Ace Data Cloud Google Search exactly once for the official Open WebUI docume
 
 管理员另行安装 [tools/gpt_image.py](../tools/gpt_image.py)，并授予 Tool **Read** 权限。首次示例为 <code>gpt-image-2</code>、<code>1024x1024</code>、<code>low</code>、一张图。提交前检查当前价格与余额。受限 Key 同时允许 <code>/openai/images/generations</code> 和 <code>/openai/tasks</code>。
 
-新开聊天，只启用 **Ace Data Cloud GPT Image** Tool。通过滑块图标设置个人 Key，打开 **Allow Billable Calls**，发送：
+新开聊天，只启用 **GPT Image by Ace Data Cloud** Tool。通过滑块图标设置个人 Key，打开 **Allow Billable Calls**，发送：
 
 ~~~text
-Call Ace Data Cloud GPT Image generate_image exactly once with model gpt-image-2, size 1024x1024, quality low, and prompt: A single lime green origami boat on a plain cream background, clean studio photograph, no text. Report the task ID. Do not call generate_image again or poll automatically.
+Call GPT Image by Ace Data Cloud generate_image exactly once with model gpt-image-2, size 1024x1024, quality low, and prompt: A single lime green origami boat on a plain cream background, clean studio photograph, no text. Report the task ID. Do not call generate_image again or poll automatically.
 ~~~
 
 Tool 返回的 <code>task_id</code> 只表示任务已接受，**不表示图片已完成**。记下 ID 后立即关闭 **Allow Billable Calls**。本次实测只提交了一次，得到任务 <code>7893131f-77d0-4f93-b779-d192a74dd3e8</code>。
@@ -102,7 +118,7 @@ Tool 返回的 <code>task_id</code> 只表示任务已接受，**不表示图片
 **新开聊天**，重新在 **Integrations → Tools** 启用 GPT Image，保持计费开关关闭。把下面占位符换成你自己的任务 ID：
 
 ~~~text
-Use the attached Ace Data Cloud GPT Image retrieve_task function exactly once on task ID <your-task-id>. Report status, success, and the first media URL. This is a read-only lookup. Never generate a new image.
+Use the attached GPT Image by Ace Data Cloud retrieve_task function exactly once on task ID <your-task-id>. Report status, success, and the first media URL. This is a read-only lookup. Never generate a new image.
 ~~~
 
 若仍是 <code>pending</code>，稍后只重复 <code>retrieve_task</code> 查询同一个 ID。若模型说 Tool 不可用，先在当前聊天重新启用 Tool。看到 <code>status: succeeded</code> 和 <code>success: true</code> 后，再打开返回的图片 URL。聊天界面显示成功不等于媒体任务完成。

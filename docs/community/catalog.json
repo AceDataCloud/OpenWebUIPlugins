@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "prepared_on": "2026-10-18",
+  "publication_status": "local_materials_only",
+  "source_repository": "https://github.com/AceDataCloud/OpenWebUIPlugins",
+  "independent_entries": [
+    {
+      "id": "suno",
+      "title": "Suno by Ace Data Cloud",
+      "publisher": "Ace Data Cloud",
+      "type": "Tool",
+      "description": "Generate Suno music or lyrics through Ace Data Cloud; retrieve the same music task for final audio.",
+      "description_zh": "生成音乐或歌词，通过同一任务号获取完成后的音频。",
+      "search_terms": [
+        "suno",
+        "music",
+        "lyrics",
+        "audio"
+      ],
+      "suggested_tags": [
+        "suno",
+        "music",
+        "lyrics",
+        "audio",
+        "ace-data-cloud"
+      ],
+      "suggested_category": "Music / Audio",
+      "publisher_icon": "_assets/acedata-mark.png",
+      "brand_disclosure": "Integration by Ace Data Cloud. Not an official plugin from the named model/service creator.",
+      "source_file": "tools/suno.py",
+      "source_sha256": "6ae3c10ca7e50ca62a36dae5c6a450944812cd68cc86e6e2d7642199e508c398",
+      "version": "0.1.1",
+      "required_open_webui_version": "0.11.4",
+      "install_unit": "one self-contained Python file; no companion Tool or Pipeline required",
+      "official_directory_url": "https://openwebui.com/search",
+      "official_listing_url": null,
+      "publication_status": "not_submitted",
+      "source_pr": "https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1",
+      "allowed_apis": [
+        "/suno/audios",
+        "/suno/lyrics",
+        "/suno/tasks"
+      ],
+      "methods": [
+        {
+          "name": "generate_lyrics",
+          "signature": "(prompt: 'str', model: 'str' = 'default', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": false
+        },
+        {
+          "name": "generate_music",
+          "signature": "(prompt: 'str', model: 'str' = 'chirp-v6', instrumental: 'bool' = True, __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": false
+        },
+        {
+          "name": "retrieve_task",
+          "signature": "(task_id: 'str', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": true
+        }
+      ],
+      "readme_en": "readme/services/suno.md",
+      "readme_zh": "readme/services/zh-Hans/suno.md",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=sunoopenwebui_community_api_key",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=sunoopenwebui_community_pricing",
+      "install_verified_from_community": false
+    },
+    {
+      "id": "seedance",
+      "title": "Seedance by Ace Data Cloud",
+      "publisher": "Ace Data Cloud",
+      "type": "Tool",
+      "description": "Create Seedance text-to-video tasks through Ace Data Cloud and retrieve completed video links.",
+      "description_zh": "生成 Seedance 视频，通过同一任务号获取完成后的视频链接。",
+      "search_terms": [
+        "seedance",
+        "video",
+        "text-to-video"
+      ],
+      "suggested_tags": [
+        "seedance",
+        "video",
+        "text-to-video",
+        "ace-data-cloud"
+      ],
+      "suggested_category": "Video",
+      "publisher_icon": "_assets/acedata-mark.png",
+      "brand_disclosure": "Integration by Ace Data Cloud. Not an official plugin from the named model/service creator.",
+      "source_file": "tools/seedance.py",
+      "source_sha256": "1cf54fd2298e73f3718d45ceae423f18577d27f54ed0d4b021c7d85451223f9f",
+      "version": "0.1.1",
+      "required_open_webui_version": "0.11.4",
+      "install_unit": "one self-contained Python file; no companion Tool or Pipeline required",
+      "official_directory_url": "https://openwebui.com/search",
+      "official_listing_url": null,
+      "publication_status": "not_submitted",
+      "source_pr": "https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1",
+      "allowed_apis": [
+        "/seedance/tasks",
+        "/seedance/videos"
+      ],
+      "methods": [
+        {
+          "name": "generate_video",
+          "signature": "(prompt: 'str', model: 'str' = 'doubao-seedance-2-0-mini-260615', duration: 'int' = 4, resolution: 'str' = '480p', ratio: 'str' = '16:9', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": false
+        },
+        {
+          "name": "retrieve_task",
+          "signature": "(task_id: 'str', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": true
+        }
+      ],
+      "readme_en": "readme/services/seedance.md",
+      "readme_zh": "readme/services/zh-Hans/seedance.md",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedanceopenwebui_community_api_key",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedanceopenwebui_community_pricing",
+      "install_verified_from_community": false
+    },
+    {
+      "id": "happy_horse",
+      "title": "Happy Horse by Ace Data Cloud",
+      "publisher": "Ace Data Cloud",
+      "type": "Tool",
+      "description": "Create Happy Horse (HappyHorse) text-to-video tasks through Ace Data Cloud and query final videos.",
+      "description_zh": "生成 Happy Horse（HappyHorse）视频，通过同一任务号查询完成结果。",
+      "search_terms": [
+        "happyhorse",
+        "happy",
+        "horse",
+        "video"
+      ],
+      "suggested_tags": [
+        "happyhorse",
+        "happy-horse",
+        "video",
+        "text-to-video",
+        "ace-data-cloud"
+      ],
+      "suggested_category": "Video",
+      "publisher_icon": "_assets/acedata-mark.png",
+      "brand_disclosure": "Integration by Ace Data Cloud. Not an official plugin from the named model/service creator.",
+      "source_file": "tools/happy_horse.py",
+      "source_sha256": "f4d6d4669a523b57cd982c18832974f131a0f3dae022b39f6b29f365f3ac4367",
+      "version": "0.1.1",
+      "required_open_webui_version": "0.11.4",
+      "install_unit": "one self-contained Python file; no companion Tool or Pipeline required",
+      "official_directory_url": "https://openwebui.com/search",
+      "official_listing_url": null,
+      "publication_status": "not_submitted",
+      "source_pr": "https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1",
+      "allowed_apis": [
+        "/happyhorse/tasks",
+        "/happyhorse/videos"
+      ],
+      "methods": [
+        {
+          "name": "generate_video",
+          "signature": "(prompt: 'str', model: 'str' = 'happyhorse-1.1-t2v', duration: 'int' = 3, resolution: 'str' = '720P', ratio: 'str' = '16:9', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": false
+        },
+        {
+          "name": "retrieve_task",
+          "signature": "(task_id: 'str', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": true
+        }
+      ],
+      "readme_en": "readme/services/happy_horse.md",
+      "readme_zh": "readme/services/zh-Hans/happy_horse.md",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=happy_horseopenwebui_community_api_key",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=happy_horseopenwebui_community_pricing",
+      "install_verified_from_community": false
+    },
+    {
+      "id": "gpt_image",
+      "title": "GPT Image by Ace Data Cloud",
+      "publisher": "Ace Data Cloud",
+      "type": "Tool",
+      "description": "Generate or edit GPT Image pictures through Ace Data Cloud and retrieve the same image task.",
+      "description_zh": "生成或编辑 GPT Image 图片，通过同一任务号查询完成后的图片。",
+      "search_terms": [
+        "gpt",
+        "image",
+        "gpt-image",
+        "image",
+        "editing"
+      ],
+      "suggested_tags": [
+        "gpt-image",
+        "image-generation",
+        "image-editing",
+        "ace-data-cloud"
+      ],
+      "suggested_category": "Images",
+      "publisher_icon": "_assets/acedata-mark.png",
+      "brand_disclosure": "Integration by Ace Data Cloud. Not an official plugin from the named model/service creator.",
+      "source_file": "tools/gpt_image.py",
+      "source_sha256": "1c23170eee5a4412780b7c1516ec61f33f002de00e1bb877dea46dd75f2085ee",
+      "version": "0.1.1",
+      "required_open_webui_version": "0.11.4",
+      "install_unit": "one self-contained Python file; no companion Tool or Pipeline required",
+      "official_directory_url": "https://openwebui.com/search",
+      "official_listing_url": null,
+      "publication_status": "not_submitted",
+      "source_pr": "https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1",
+      "allowed_apis": [
+        "/openai/images/edits",
+        "/openai/images/generations",
+        "/openai/tasks"
+      ],
+      "methods": [
+        {
+          "name": "edit_image",
+          "signature": "(prompt: 'str', image_url: 'str', model: 'str' = 'gpt-image-2', size: 'str' = '1024x1024', quality: 'str' = 'low', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": false
+        },
+        {
+          "name": "generate_image",
+          "signature": "(prompt: 'str', model: 'str' = 'gpt-image-2', size: 'str' = '1024x1024', quality: 'str' = 'low', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": false
+        },
+        {
+          "name": "retrieve_task",
+          "signature": "(task_id: 'str', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": true
+        }
+      ],
+      "readme_en": "readme/services/gpt_image.md",
+      "readme_zh": "readme/services/zh-Hans/gpt_image.md",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=gpt_imageopenwebui_community_api_key",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=gpt_imageopenwebui_community_pricing",
+      "install_verified_from_community": false
+    },
+    {
+      "id": "nano_banana",
+      "title": "Nano Banana by Ace Data Cloud",
+      "publisher": "Ace Data Cloud",
+      "type": "Tool",
+      "description": "Generate or edit Nano Banana images through Ace Data Cloud and retrieve completed image tasks.",
+      "description_zh": "生成或编辑 Nano Banana 图片，通过同一任务号查询完成结果。",
+      "search_terms": [
+        "nano",
+        "banana",
+        "nano-banana",
+        "image",
+        "editing"
+      ],
+      "suggested_tags": [
+        "nano-banana",
+        "image-generation",
+        "image-editing",
+        "ace-data-cloud"
+      ],
+      "suggested_category": "Images",
+      "publisher_icon": "_assets/acedata-mark.png",
+      "brand_disclosure": "Integration by Ace Data Cloud. Not an official plugin from the named model/service creator.",
+      "source_file": "tools/nano_banana.py",
+      "source_sha256": "f7c88285be11b2442abeff0323f700fffee9b58905db2a9e9cf84da2c85c726d",
+      "version": "0.1.1",
+      "required_open_webui_version": "0.11.4",
+      "install_unit": "one self-contained Python file; no companion Tool or Pipeline required",
+      "official_directory_url": "https://openwebui.com/search",
+      "official_listing_url": null,
+      "publication_status": "not_submitted",
+      "source_pr": "https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1",
+      "allowed_apis": [
+        "/nano-banana/images",
+        "/nano-banana/tasks"
+      ],
+      "methods": [
+        {
+          "name": "edit_image",
+          "signature": "(prompt: 'str', image_url: 'str', model: 'str' = 'nano-banana-2-lite', resolution: 'str' = '1K', aspect_ratio: 'str' = '1:1', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": false
+        },
+        {
+          "name": "generate_image",
+          "signature": "(prompt: 'str', model: 'str' = 'nano-banana-2-lite', resolution: 'str' = '1K', aspect_ratio: 'str' = '1:1', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": false
+        },
+        {
+          "name": "retrieve_task",
+          "signature": "(task_id: 'str', __user__: 'dict | None' = None) -> 'dict'",
+          "read_only": true
+        }
+      ],
+      "readme_en": "readme/services/nano_banana.md",
+      "readme_zh": "readme/services/zh-Hans/nano_banana.md",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=nano_bananaopenwebui_community_api_key",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=nano_bananaopenwebui_community_pricing",
+      "install_verified_from_community": false
+    }
+  ]
+}
