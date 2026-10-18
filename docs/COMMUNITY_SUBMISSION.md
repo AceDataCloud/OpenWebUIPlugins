@@ -14,14 +14,14 @@ Ace Data Cloud chat models already work through Open WebUI's native OpenAI-compa
 
 ## Before the first post
 
-1. Merge the reviewed [source PR](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1) when the Ace repository reviewer authorizes it. Confirm the main branch contains the exact files.
+1. [Source PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1) merged on 2026-10-19. Compare the exact main/release files and hashes in the [release manifest](https://github.com/AceDataCloud/OpenWebUIPlugins/releases/tag/v0.1.1) before sharing; official Community publication remains a separate step.
 2. Use an Ace Data Cloud-controlled openwebui.com account. Import the main-branch Pipe and the desired Tools into an administrator-owned Open WebUI instance, then compare their source against the merged commit. Do not put an API key in any source or Community text.
 3. Browse the official Community library manually for existing Ace Data Cloud entries before each post. Use the matching existing entry if one exists.
 4. For each item, click **Share** on that installed Function or Tool. Confirm the post type, title, source and links; then publish once. If the form offers a logo/image field, use Ace Data Cloud's existing canonical brand asset and verify the rendered crop. Record the public post URL and commit SHA. Community listings are user-contributed and are not code-security endorsements.
 
 ## Distinct post drafts
 
-Use these as short descriptions. After the source PR is merged, link posts to the public [English first-run guide](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/main/README.md), [中文教程](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/main/readme/README_zh_Hans.md), [service permissions](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/main/docs/SERVICES.md), and [privacy](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/main/PRIVACY.md). Verify those absolute links before publishing; relative links from this repository do not resolve inside a Community post. Do not claim Marketplace review, default inclusion or featured status.
+Use these as short descriptions. Use the merged source and link posts to the public [English first-run guide](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/main/README.md), [中文教程](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/main/readme/README_zh_Hans.md), [service permissions](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/main/docs/SERVICES.md), and [privacy](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/main/PRIVACY.md). Verify those absolute links before publishing; relative links from this repository do not resolve inside a Community post. Do not claim Marketplace review, default inclusion or featured status.
 
 | Type | Title | Distinct user-facing description | Source |
 | --- | --- | --- | --- |
