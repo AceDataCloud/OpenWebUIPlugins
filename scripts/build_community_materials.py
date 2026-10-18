@@ -75,7 +75,7 @@ def build() -> dict[Path, str]:
             "install_verified_from_community": False,
         }
         entries.append(item)
-        source_url = "https://github.com/AceDataCloud/OpenWebUIPlugins/blob/codex/openwebui-provider-tools/" + item["source_file"]
+        source_url = "https://github.com/AceDataCloud/OpenWebUIPlugins/blob/v0.1.1/" + item["source_file"]
         api_text = ", ".join(f"`{api}`" for api in apis)
         submit_prompt = f"Use {item['title']} {first_method} exactly once with {args}. Report the task ID. Do not retry, generate again, or poll automatically."
         query_prompt = f"Use {item['title']} retrieve_task exactly once with task_id <your-task-id>. Report status, success, and media_urls. This is read-only. Never generate a new task."
@@ -95,7 +95,7 @@ def build() -> dict[Path, str]:
 
 **Community publication is pending (2026-10-18). There is no verified Get/install post URL yet.** In the [official Community library](https://openwebui.com/search), manually search **{name}**, then check for **{item['title']}**, the Ace Data Cloud author, and the reviewed source. A matching name alone does not establish ownership. The official account holder must check for an existing entry before publishing; this guide does not claim that search currently finds ours.
 
-After a verified post is linked here, use its **Get → your Open WebUI URL → Import** flow, review the code, and save. Functions go to Admin Panel; this service is a **Tool** and belongs in **Workspace → Tools**. Until publication, an administrator can review and import the [PR source file]({common['source']}) using **Workspace → Tools → Create → Import From Link**. That is a manual preview, not official distribution. Save an existing file over its prior entry instead of creating a duplicate. Proposed Tool version: **{common['version']}**.
+After a verified post is linked here, use its **Get → your Open WebUI URL → Import** flow, review the code, and save. Functions go to Admin Panel; this service is a **Tool** and belongs in **Workspace → Tools**. Until Community publication, use the [first-party v0.1.1 GitHub release](https://github.com/AceDataCloud/OpenWebUIPlugins/releases/tag/v0.1.1) for this service’s separate Python, import JSON or ZIP; see the [download/import instructions](../../docs/RELEASE.md). An administrator can also import the [tagged source file]({common['source']}) using **Workspace → Tools → Create → Import From Link**. GitHub distribution is available independently of Community publication and is not evidence of Community search/Get. Save an existing file over its prior entry instead of creating a duplicate. Proposed Tool version: **{common['version']}**.
 
 The administrator grants intended users **Read** access. Keep code creation/import permissions with trusted administrators. Source review is required because a Tool runs Python inside your server. Open WebUI installs this one file without another Ace Tool; its own `httpx` requirement must be available.
 
@@ -165,7 +165,7 @@ An accepted task returns a task ID. A finished query returns `status: succeeded`
 
 **2026-10-18：Community 尚待发布，暂无核实的 Get/安装帖链接。** 在 [Open WebUI 官方 Community](https://openwebui.com/search) 人工搜索 **{name}**，核对标题 **{item['title']}**、Ace 作者与源码；名字相同不代表就是本条目。账号持有人发布前还须人工查重，本文不声称现在已经搜到 Ace 条目。
 
-正式帖子验证后，应通过其 **Get → 填实例 URL → Import** 导入、审源码并保存。此项是 **Tool**，位于 **Workspace → Tools**；不是 Admin Panel 的 Function。暂时可由管理员用 **Workspace → Tools → Create → Import From Link** 导入 [PR 源文件]({common['source']})作手动预览，不能算官方分发。已有旧条目时更新它，不重复创建。拟发布版本 **{common['version']}**。
+正式帖子验证后，应通过其 **Get → 填实例 URL → Import** 导入、审源码并保存。此项是 **Tool**，位于 **Workspace → Tools**；不是 Admin Panel 的 Function。Community 发布前，可从 [GitHub v0.1.1 版本](https://github.com/AceDataCloud/OpenWebUIPlugins/releases/tag/v0.1.1) 下载该服务独立 Python、导入 JSON 或 ZIP，见[下载说明](../../../docs/RELEASE.md)；也可由管理员用 **Workspace → Tools → Create → Import From Link** 导入[标签源文件]({common['source']})。GitHub 是独立可用的一方分发，不等于 Community 搜索/Get 已上线。已有旧条目时更新它，不重复创建。拟发布版本 **{common['version']}**。
 
 管理员给目标用户授予 **Read**，代码导入/编辑权限仅留给可信管理员；Tool 会在服务器内执行 Python。只需此文件，其 `httpx` 依赖须可用。
 
@@ -248,7 +248,7 @@ LOCAL PUBLICATION DRAFT — not yet posted. Version {item['version']}.
 
 ## Publish once, then verify
 
-1. Confirm the reviewed source is merged and its bytes match this digest. Install this one Tool in the administrator's instance.
+1. Source PR #1 is merged. Confirm the release/source bytes match this digest. Install this one Tool in the administrator's instance.
 2. Account holder manually searches {name} and Ace variants. Update an existing Ace-owned entry if present; do not post a duplicate.
 3. **Workspace → Tools → Share** opens the prefilled website form. Review exact title, description, full source and allowed tags/category. Use Ace's own publisher mark if the form offers an icon; do not imply the named service's official endorsement.
 4. Finish only through the authenticated official UI, after the account holder handles any legal terms. Record the exact public post URL and visible code version. Do not run an automated website script.

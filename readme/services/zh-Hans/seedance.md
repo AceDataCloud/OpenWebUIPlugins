@@ -8,7 +8,7 @@
 
 **2026-10-18：Community 尚待发布，暂无核实的 Get/安装帖链接。** 在 [Open WebUI 官方 Community](https://openwebui.com/search) 人工搜索 **Seedance**，核对标题 **Seedance by Ace Data Cloud**、Ace 作者与源码；名字相同不代表就是本条目。账号持有人发布前还须人工查重，本文不声称现在已经搜到 Ace 条目。
 
-正式帖子验证后，应通过其 **Get → 填实例 URL → Import** 导入、审源码并保存。此项是 **Tool**，位于 **Workspace → Tools**；不是 Admin Panel 的 Function。暂时可由管理员用 **Workspace → Tools → Create → Import From Link** 导入 [PR 源文件](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/codex/openwebui-provider-tools/tools/seedance.py)作手动预览，不能算官方分发。已有旧条目时更新它，不重复创建。拟发布版本 **0.1.1**。
+正式帖子验证后，应通过其 **Get → 填实例 URL → Import** 导入、审源码并保存。此项是 **Tool**，位于 **Workspace → Tools**；不是 Admin Panel 的 Function。Community 发布前，可从 [GitHub v0.1.1 版本](https://github.com/AceDataCloud/OpenWebUIPlugins/releases/tag/v0.1.1) 下载该服务独立 Python、导入 JSON 或 ZIP，见[下载说明](../../../docs/RELEASE.md)；也可由管理员用 **Workspace → Tools → Create → Import From Link** 导入[标签源文件](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/v0.1.1/tools/seedance.py)。GitHub 是独立可用的一方分发，不等于 Community 搜索/Get 已上线。已有旧条目时更新它，不重复创建。拟发布版本 **0.1.1**。
 
 管理员给目标用户授予 **Read**，代码导入/编辑权限仅留给可信管理员；Tool 会在服务器内执行 Python。只需此文件，其 `httpx` 依赖须可用。
 

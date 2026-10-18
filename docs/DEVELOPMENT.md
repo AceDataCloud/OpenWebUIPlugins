@@ -75,3 +75,7 @@ Open WebUI Community highlighting and GitHub availability are not security revie
 - [Open WebUI Community share and import](https://docs.openwebui.com/ecosystem/community/)
 - [Open WebUI Valve storage and encryption](https://docs.openwebui.com/features/extensibility/plugin/development/valves/)
 - [Ace Data Cloud API documentation](https://platform.acedata.cloud/documents)
+
+## Release build
+
+`python3 scripts/build_release.py --tag v0.1.1 --output-dir /tmp/openwebui-release-v0.1.1` builds separate Python/JSON/ZIP files, a pinned manifest, optional complete bundle and SHA256SUMS without network calls. The release tests discover all 18 forms, exact source bytes, empty Read grants/no credentials, disabled Function imports, deterministic archives and complete checksums. Community publication and current-title browser use remain separate gates.

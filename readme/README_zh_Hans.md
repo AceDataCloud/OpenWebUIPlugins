@@ -18,7 +18,7 @@
 
 每份教程包含正式安装入口状态、注册/登录、Applications/通用应用、复制或创建 Key 真实脱敏图、个人 Key 粘贴位置、单次动作/同任务查询、结果、账单和排错。发布者材料见[独立条目清单](../docs/community/catalog.json)。下方历史截图保留旧 Ace-first 名称，不是新标题已上架的证据。
 
-**发布状态（2026-10-12）：**源码位于待合并的 [Ace Data Cloud PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1)，Open WebUI Community 投稿尚未发布。GitHub 源码导入不等于 Community 上架；上架后应在 openwebui.com 核对作者与源码再点击 Get。
+**发布状态（2026-10-19）：**[源码 PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1) 已合并。[GitHub v0.1.1 下载版本](https://github.com/AceDataCloud/OpenWebUIPlugins/releases/tag/v0.1.1) 提供每项独立 Python、导入 JSON、小 ZIP 及 SHA-256 清单，见[下载/导入说明](../docs/RELEASE.md)。Community 正式帖子仍待核实；源码合并或 GitHub 下载不等于官网搜索上架，正式 Get 前须核作者和精确源码。
 
 ## 1. 部署 Open WebUI
 

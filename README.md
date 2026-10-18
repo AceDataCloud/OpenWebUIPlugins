@@ -4,7 +4,7 @@ Connect Ace Data Cloud chat models with Open WebUI's **native OpenAI-compatible 
 
 [简体中文教程](readme/README_zh_Hans.md) · [Service actions and API permissions](docs/SERVICES.md) · [Current models and pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=openwebui_readme_pricing)
 
-**Publication status (2026-10-18):** this source is in [Ace Data Cloud PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1), awaiting merge. Open WebUI Community posts are pending. A GitHub source import is not a Community listing. Once posts are published, verify the author and source code on openwebui.com before clicking Get.
+**Publication status (2026-10-19):** [source PR #1](https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1) is merged. The [v0.1.1 GitHub release](https://github.com/AceDataCloud/OpenWebUIPlugins/releases/tag/v0.1.1) provides separate Python files, import JSON, per-service ZIPs and a SHA-256 manifest; follow the [download/import guide](docs/RELEASE.md). Open WebUI Community posts remain unverified. A source merge or GitHub download is not a Community listing; verify each published post's author and exact source before Get.
 
 ## Find a service independently
 
