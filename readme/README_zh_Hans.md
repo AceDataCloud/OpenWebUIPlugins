@@ -1,5 +1,7 @@
 # Ace Data Cloud × Open WebUI：从安装到第一次调用
 
+[ACE Music 工具](../tools/acemusic.py)支持创作歌曲和歌词、导入参考 MP3、翻唱、融合与原任务查询。在工作区工具中用该源码创建工具，或导入生成的 ToolForm JSON，在个人设置中填写应用 API Key，准备生成时启用收费调用。
+
 先通过 Open WebUI **原生 OpenAI 兼容 Connection** 接入 Ace Data Cloud 聊天模型，再按需安装服务 Tool。17 个服务 Tool 是互相独立的 Python 文件；如需每位聊天用户使用自己的模型 Key，可选装 Pipe Function。当前源码在 v0.12.0-slim 通过导入、普通用户权限、原生模型发现和既有任务查询；下文浏览器截图与收费首调示例仍来自之前的 v0.11.4 实测，密钥已遮蔽。具体证据边界见[验收记录](../docs/DEVELOPMENT.md)，完整方法与所需 API 见[服务清单](../docs/SERVICES.md)。
 
 ## 按服务名独立发现和安装

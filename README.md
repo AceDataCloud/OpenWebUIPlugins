@@ -1,6 +1,8 @@
 # Ace Data Cloud for Open WebUI
 
-Connect Ace Data Cloud chat models with Open WebUI's **native OpenAI-compatible Connection**, then install only the service Tools your users need. Each of the 17 Tools is a separate Python file and can be imported independently. An optional Pipe Function offers a personal model key for each user. Current-source import, ordinary-user permissions, native model discovery and an existing-task Tool lookup passed on Open WebUI v0.12.0-slim; the browser screenshots and paid first-call examples below are from the earlier v0.11.4 test. See the [acceptance boundaries](docs/DEVELOPMENT.md).
+The [ACE Music Tool](tools/acemusic.py) supports song and lyric generation, MP3 import, cover, mashup and original-task recovery. Create a Tool in Workspace → Tools using the single-file source or import its generated ToolForm JSON, configure your application key in User Valves, then enable billable calls when ready.
+
+Connect Ace Data Cloud chat models with Open WebUI's **native OpenAI-compatible Connection**, then install only the service Tools your users need. Each of the 18 Tools is a separate Python file and can be imported independently. An optional Pipe Function offers a personal model key for each user. Current-source import, ordinary-user permissions, native model discovery and an existing-task Tool lookup passed on Open WebUI v0.12.0-slim; the browser screenshots and paid first-call examples below are from the earlier v0.11.4 test. See the [acceptance boundaries](docs/DEVELOPMENT.md).
 
 [简体中文教程](readme/README_zh_Hans.md) · [Service actions and API permissions](docs/SERVICES.md) · [Current models and pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=openwebui_readme_pricing)
 

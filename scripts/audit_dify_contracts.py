@@ -46,6 +46,9 @@ async def audit(dify_root: Path) -> int:
     failures = []
     checked = 0
     for service in SERVICES:
+        if service.slug == "acemusic":
+            # This integration uses the public ACE Music OpenAPI contract.
+            continue
         module_path = ROOT / "tools" / f"{service.slug}.py"
         spec = importlib.util.spec_from_file_location("audit_" + service.slug, module_path)
         assert spec and spec.loader
