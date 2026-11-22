@@ -6,7 +6,7 @@ git_url: https://github.com/AceDataCloud/OpenWebUIPlugins
 description: Use Ace Data Cloud chat models with a personal API key.
 required_open_webui_version: 0.11.4
 requirements: httpx
-version: 0.1.0
+version: 0.1.1
 licence: MIT
 """
 
@@ -43,7 +43,10 @@ class Pipe:
 
     class Valves(BaseModel):
         MODEL_IDS: str = Field(
-            default="gpt-5.6-luna,deepseek-v4-flash",
+            default=(
+                "gpt-5.6-luna,deepseek-v4.1-flash,deepseek-v4-flash,"
+                "deepseek-flash,deepseek-v4-pro,deepseek-v3.2"
+            ),
             description="Comma-separated Ace Data Cloud chat model IDs to show in the model picker.",
         )
 
@@ -69,9 +72,11 @@ class Pipe:
             raise ValueError("Set your Ace Data Cloud application API key in this model's User Valves.")
 
         selected = str(body.get("model", ""))
-        model = selected.partition(".")[2] if "." in selected else selected
         available = {item["id"] for item in self.pipes()}
-        if not model and len(available) == 1:
+        model = selected
+        if selected not in available and "." in selected:
+            model = selected.split(".", 1)[1]
+        if not selected and len(available) == 1:
             model = next(iter(available))
         if model not in available:
             raise ValueError("The selected model is not configured in the Pipe's Model IDs.")
