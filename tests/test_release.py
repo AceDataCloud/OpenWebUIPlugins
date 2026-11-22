@@ -40,7 +40,7 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(set(sums), set(first) - {"SHA256SUMS"})
         for name, checksum in sums.items():
             self.assertEqual(checksum, module.digest(first[name]))
-        with zipfile.ZipFile(io.BytesIO(first["acedatacloud-openwebui-0.1.3.zip"])) as archive:
+        with zipfile.ZipFile(io.BytesIO(first["acedatacloud-openwebui-0.1.4.zip"])) as archive:
             self.assertEqual(archive.read("tools/suno.py"), (ROOT / "tools/suno.py").read_bytes())
             self.assertEqual(archive.read("functions/acedatacloud_pipe.py"), (ROOT / "functions/acedatacloud_pipe.py").read_bytes())
             self.assertIn("readme/services/suno.md", archive.namelist())
