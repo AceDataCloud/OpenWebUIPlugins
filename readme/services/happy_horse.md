@@ -2,7 +2,7 @@
 
 Create Happy Horse (HappyHorse) text-to-video tasks through Ace Data Cloud and query final videos. This is an integration **by Ace Data Cloud**, not an official plugin from the Happy Horse creator. Install this service independently; no Ace bundle or separate Pipelines server is required.
 
-[简体中文](zh-Hans/happy_horse.md) · [Current access and pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=happy_horseopenwebui_readme_pricing)
+[简体中文](zh-Hans/happy_horse.md) · [Current access and pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)
 
 ## 1. Find and install the correct Tool
 
@@ -18,7 +18,7 @@ Historical real v0.11.4 screenshot, first committed 2026-10-09. It shows manual 
 
 ## 2. Register, sign in, and copy or create a Key
 
-1. Register or sign in at [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=happy_horseopenwebui_readme_api_key). If needed, choose **Initialize General Application** first.
+1. Register or sign in at [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen). If needed, choose **Initialize General Application** first.
 2. Open **General Application**. Check **Happy Horse** access, current price and balance. A service-specific key works only for that service; a General Application key covers only services your account is entitled to use.
 3. Copy the selected application key (**1**) or open **Manage Keys** (**2**) and choose **Create** for a dedicated Open WebUI key.
 

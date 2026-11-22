@@ -13,7 +13,7 @@ Integration by Ace Data Cloud. Not an official plugin from the named model/servi
 - Official post/Get URL: **pending**. Do not substitute a repository or search URL for a verified listing.
 - Source: [tools/gpt_image.py](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/v0.1.1/tools/gpt_image.py); SHA-256 `1c23170eee5a4412780b7c1516ec61f33f002de00e1bb877dea46dd75f2085ee`.
 - [English walkthrough](../../readme/services/gpt_image.md) · [中文教程](../../readme/services/zh-Hans/gpt_image.md). Convert these to absolute merged-source URLs in the website form.
-- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=gpt_imageopenwebui_community_api_key) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=gpt_imageopenwebui_community_pricing).
+- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen).
 - Allowed APIs: `/openai/images/edits`, `/openai/images/generations`, `/openai/tasks`.
 - Official Community Share/import process: https://docs.openwebui.com/ecosystem/community/.
 

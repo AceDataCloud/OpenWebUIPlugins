@@ -13,7 +13,7 @@ Integration by Ace Data Cloud. Not an official plugin from the named model/servi
 - Official post/Get URL: **pending**. Do not substitute a repository or search URL for a verified listing.
 - Source: [tools/nano_banana.py](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/v0.1.1/tools/nano_banana.py); SHA-256 `f7c88285be11b2442abeff0323f700fffee9b58905db2a9e9cf84da2c85c726d`.
 - [English walkthrough](../../readme/services/nano_banana.md) · [中文教程](../../readme/services/zh-Hans/nano_banana.md). Convert these to absolute merged-source URLs in the website form.
-- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=nano_bananaopenwebui_community_api_key) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=nano_bananaopenwebui_community_pricing).
+- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen).
 - Allowed APIs: `/nano-banana/images`, `/nano-banana/tasks`.
 - Official Community Share/import process: https://docs.openwebui.com/ecosystem/community/.
 

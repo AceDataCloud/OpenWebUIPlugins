@@ -60,8 +60,8 @@
       ],
       "readme_en": "readme/services/suno.md",
       "readme_zh": "readme/services/zh-Hans/suno.md",
-      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=sunoopenwebui_community_api_key",
-      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=sunoopenwebui_community_pricing",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
       "install_verified_from_community": false
     },
     {
@@ -112,8 +112,8 @@
       ],
       "readme_en": "readme/services/seedance.md",
       "readme_zh": "readme/services/zh-Hans/seedance.md",
-      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedanceopenwebui_community_api_key",
-      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedanceopenwebui_community_pricing",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
       "install_verified_from_community": false
     },
     {
@@ -166,8 +166,8 @@
       ],
       "readme_en": "readme/services/happy_horse.md",
       "readme_zh": "readme/services/zh-Hans/happy_horse.md",
-      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=happy_horseopenwebui_community_api_key",
-      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=happy_horseopenwebui_community_pricing",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
       "install_verified_from_community": false
     },
     {
@@ -226,8 +226,8 @@
       ],
       "readme_en": "readme/services/gpt_image.md",
       "readme_zh": "readme/services/zh-Hans/gpt_image.md",
-      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=gpt_imageopenwebui_community_api_key",
-      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=gpt_imageopenwebui_community_pricing",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
       "install_verified_from_community": false
     },
     {
@@ -285,8 +285,8 @@
       ],
       "readme_en": "readme/services/nano_banana.md",
       "readme_zh": "readme/services/zh-Hans/nano_banana.md",
-      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=nano_bananaopenwebui_community_api_key",
-      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=nano_bananaopenwebui_community_pricing",
+      "application_key_url": "https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
+      "pricing_url": "https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen",
       "install_verified_from_community": false
     }
   ]
