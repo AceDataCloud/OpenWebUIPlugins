@@ -64,7 +64,7 @@ The administrator's Connection key is shared by everyone authorized to use those
 As an **Open WebUI administrator**:
 
 1. Open **Admin Panel → Functions → Import From Link**. Import [functions/acedatacloud_pipe.py](functions/acedatacloud_pipe.py) from its GitHub file URL, review the code, and save it as <code>acedatacloud_models</code>.
-2. Turn the Pipe **Active**. Its admin Valves contain <code>MODEL_IDS</code>, initially <code>gpt-5.6-luna,deepseek-v4-flash</code>. Keep only public chat model IDs available to your Ace key. The Pipe adds each ID to the model picker; it does not grant users access by itself.
+2. Turn the Pipe **Active**. Its admin Valves contain <code>MODEL_IDS</code>, initially <code>gpt-5.6-luna,deepseek-v4.1-flash,deepseek-v4-flash,deepseek-flash,deepseek-v4-pro,deepseek-v3.2</code>. Keep only public chat model IDs available to your Ace key. The Pipe adds each ID to the model picker; it does not grant users access by itself.
 3. In **Admin Panel → Settings → Models**, give the intended users or group **Read** access to each Pipe model (or make each public to signed-in users). In the local test, a regular user saw no Pipe models until both model IDs received read access. Avoid <code>BYPASS_MODEL_ACCESS_CONTROL</code> for this setup.
 
 ![Installed and active model Pipe in the admin panel](./_assets/tutorial/09-admin-functions.png)
