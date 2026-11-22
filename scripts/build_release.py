@@ -18,7 +18,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = "https://github.com/AceDataCloud/OpenWebUIPlugins"
-DEFAULT_TAG = "v0.1.2"
+DEFAULT_TAG = "v0.1.3"
 
 
 def metadata(content: str) -> dict[str, str]:
@@ -113,7 +113,7 @@ def build_assets(source_commit: str, tag: str = DEFAULT_TAG) -> dict[str, bytes]
         "schema_version": 1, "repository": REPOSITORY, "release_tag": tag,
         "source_commit": source_commit, "distribution": "first_party_github_release",
         "official_community_publication_verified": False,
-        "versions": {"tools": "0.1.1", "optional_pipe": "0.1.2"},
+        "versions": {"tools": "0.1.1", "optional_pipe": "0.1.3"},
         "count": len(entries), "entries": entries,
         "import_contract": {
             "host_reference": "Open WebUI v0.12.3",
