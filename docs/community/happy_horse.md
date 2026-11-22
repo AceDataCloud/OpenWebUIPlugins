@@ -13,7 +13,7 @@ Integration by Ace Data Cloud. Not an official plugin from the named model/servi
 - Official post/Get URL: **pending**. Do not substitute a repository or search URL for a verified listing.
 - Source: [tools/happy_horse.py](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/v0.1.1/tools/happy_horse.py); SHA-256 `f4d6d4669a523b57cd982c18832974f131a0f3dae022b39f6b29f365f3ac4367`.
 - [English walkthrough](../../readme/services/happy_horse.md) · [中文教程](../../readme/services/zh-Hans/happy_horse.md). Convert these to absolute merged-source URLs in the website form.
-- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=happy_horseopenwebui_community_api_key) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=happy_horseopenwebui_community_pricing).
+- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen).
 - Allowed APIs: `/happyhorse/tasks`, `/happyhorse/videos`.
 - Official Community Share/import process: https://docs.openwebui.com/ecosystem/community/.
 

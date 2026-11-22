@@ -13,7 +13,7 @@ Integration by Ace Data Cloud. Not an official plugin from the named model/servi
 - Official post/Get URL: **pending**. Do not substitute a repository or search URL for a verified listing.
 - Source: [tools/seedance.py](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/v0.1.1/tools/seedance.py); SHA-256 `1cf54fd2298e73f3718d45ceae423f18577d27f54ed0d4b021c7d85451223f9f`.
 - [English walkthrough](../../readme/services/seedance.md) · [中文教程](../../readme/services/zh-Hans/seedance.md). Convert these to absolute merged-source URLs in the website form.
-- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedanceopenwebui_community_api_key) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedanceopenwebui_community_pricing).
+- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen).
 - Allowed APIs: `/seedance/tasks`, `/seedance/videos`.
 - Official Community Share/import process: https://docs.openwebui.com/ecosystem/community/.
 

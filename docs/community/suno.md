@@ -13,7 +13,7 @@ Integration by Ace Data Cloud. Not an official plugin from the named model/servi
 - Official post/Get URL: **pending**. Do not substitute a repository or search URL for a verified listing.
 - Source: [tools/suno.py](https://github.com/AceDataCloud/OpenWebUIPlugins/blob/v0.1.1/tools/suno.py); SHA-256 `6ae3c10ca7e50ca62a36dae5c6a450944812cd68cc86e6e2d7642199e508c398`.
 - [English walkthrough](../../readme/services/suno.md) · [中文教程](../../readme/services/zh-Hans/suno.md). Convert these to absolute merged-source URLs in the website form.
-- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=sunoopenwebui_community_api_key) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=sunoopenwebui_community_pricing).
+- [Get the correct Key](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen) · [Check price/access](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen).
 - Allowed APIs: `/suno/audios`, `/suno/lyrics`, `/suno/tasks`.
 - Official Community Share/import process: https://docs.openwebui.com/ecosystem/community/.
 

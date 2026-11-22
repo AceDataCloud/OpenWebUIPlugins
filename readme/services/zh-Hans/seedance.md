@@ -2,7 +2,7 @@
 
 生成 Seedance 视频，通过同一任务号获取完成后的视频链接。 本集成由 **Ace Data Cloud** 提供，并非 Seedance 创建方的官方插件。只安装这一项即可，不必安装整个 Ace 合集或另开 Pipelines 服务。
 
-[English](../seedance.md) · [当前权限与价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedanceopenwebui_readme_pricing)
+[English](../seedance.md) · [当前权限与价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)
 
 ## 1. 查找并安装正确条目
 
@@ -18,7 +18,7 @@
 
 ## 2. 注册登录并复制或创建专用 Key
 
-1. 注册并登录 [Ace Data Cloud → 我的应用](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=seedanceopenwebui_readme_api_key)；没有通用应用时先点 **初始化通用应用**。
+1. 注册并登录 [Ace Data Cloud → 我的应用](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)；没有通用应用时先点 **初始化通用应用**。
 2. 打开 **General Application / 通用应用**，核对 **Seedance** 权限、当前价格和余额。单服务 Key 限对应服务；通用 Key 也只能用账号有权使用的服务。
 3. 点击图中 **①** 复制已有 Key，或 **② Manage Keys** → **Create** 新建独立 Open WebUI Key。
 

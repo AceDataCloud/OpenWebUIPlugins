@@ -13,7 +13,6 @@ import json
 from pathlib import Path
 import re
 import sys
-from urllib.parse import urlencode
 
 from generate_service_tools import DISCOVERY, SERVICES
 
@@ -27,11 +26,9 @@ CATALOG = (
 )
 
 
-def link(slug: str, placement: str, path: str) -> str:
-    return "https://platform.acedata.cloud/" + path + "?" + urlencode({
-        "utm_source": "opensource", "utm_medium": "referral", "utm_campaign": "evergreen",
-        "utm_content": f"{slug}openwebui_{placement}",
-    })
+def link(path: str) -> str:
+    return f"https://platform.acedata.cloud/{path}?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen"
+
 
 
 def load(slug: str):
@@ -70,8 +67,8 @@ def build() -> dict[Path, str]:
             "publication_status": "not_submitted", "source_pr": "https://github.com/AceDataCloud/OpenWebUIPlugins/pull/1",
             "allowed_apis": apis, "methods": methods,
             "readme_en": f"readme/services/{slug}.md", "readme_zh": f"readme/services/zh-Hans/{slug}.md",
-            "application_key_url": link(slug, "community_api_key", "console/applications"),
-            "pricing_url": link(slug, "community_pricing", "models"),
+            "application_key_url": link("console/applications"),
+            "pricing_url": link("models"),
             "install_verified_from_community": False,
         }
         entries.append(item)
@@ -82,8 +79,8 @@ def build() -> dict[Path, str]:
         common = {
             "title": item["title"], "file": item["source_file"], "source": source_url,
             "apis": api_text, "submit": submit_prompt, "query": query_prompt,
-            "version": item["version"], "key": link(slug, "readme_api_key", "console/applications"),
-            "pricing": link(slug, "readme_pricing", "models"),
+            "version": item["version"], "key": link("console/applications"),
+            "pricing": link("models"),
         }
         en = f'''# {name} for Open WebUI
 
