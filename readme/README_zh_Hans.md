@@ -62,7 +62,7 @@ docker run -d --name open-webui -p 127.0.0.1:3000:8080 \
 ## 4. 可选：安装个人 Key 模型 Pipe 并授权用户
 
 1. 进入 **Admin Panel → Functions → Import From Link**，导入 [functions/acedatacloud_pipe.py](../functions/acedatacloud_pipe.py) 的 GitHub 文件链接。审查源码，保存为 <code>acedatacloud_models</code>，打开 **Active**。
-2. 管理员 Valves 中的 <code>MODEL_IDS</code> 默认为 <code>gpt-5.6-luna,deepseek-v4.1-flash-1017,deepseek-v4.1-flash,deepseek-v4-flash,deepseek-flash,deepseek-v4-pro,deepseek-v3.2</code>。只保留你有权限使用的公开聊天模型 ID。
+2. 管理员 Valves 中的 <code>MODEL_IDS</code> 默认为 <code>gpt-5.6-luna,deepseek-v4.1-flash-1017,deepseek-v4.1-flash,deepseek-v4-flash,deepseek-flash,deepseek-v4-pro,deepseek-v4-pro-0813,deepseek-v3.2</code>。只保留你有权限使用的公开聊天模型 ID。
 3. 进入 **Admin Panel → Settings → Models**，分别授予目标用户或组对每个 Pipe 模型的 **Read** 权限，或设为已登录用户可见。本地实测中，授权前普通用户的模型选择器为空；两个模型分别授权后才出现。无需开启 <code>BYPASS_MODEL_ACCESS_CONTROL</code>。
 
 ![管理员安装并启用 Pipe](../_assets/tutorial/09-admin-functions.png)
