@@ -191,7 +191,7 @@ class PipeTests(unittest.IsolatedAsyncioTestCase):
         pipe = module.Pipe()
         self.assertEqual([m["id"] for m in pipe.pipes()], [
             "gpt-5.6-luna", "deepseek-v4.1-flash-1017", "deepseek-v4.1-flash", "deepseek-v4-flash",
-            "deepseek-flash", "deepseek-v4-pro", "deepseek-v4-pro-0813", "deepseek-v3.2",
+            "deepseek-flash", "deepseek-v4-pro", "deepseek-v3.2",
         ])
         with self.assertRaisesRegex(ValueError, "application API key"):
             await pipe.pipe({"model": "acedatacloud_models.gpt-5.6-luna", "messages": [{"role": "user", "content": "Hi"}]})
@@ -204,7 +204,7 @@ class PipeTests(unittest.IsolatedAsyncioTestCase):
     async def test_deepseek_ids_survive_the_pipe_prefix_and_admin_model_filter(self):
         module = load(ROOT / "functions" / "acedatacloud_pipe.py")
         pipe = module.Pipe()
-        pipe.valves.MODEL_IDS = "deepseek-v3.2,deepseek-v4.1-flash,deepseek-v4.1-flash-1017,deepseek-v4-pro-0813"
+        pipe.valves.MODEL_IDS = "deepseek-v3.2,deepseek-v4.1-flash,deepseek-v4.1-flash-1017"
         user = {"valves": pipe.UserValves(API_KEY="test-key")}
         messages = [{"role": "user", "content": "Hi"}]
         sent = []
@@ -216,7 +216,7 @@ class PipeTests(unittest.IsolatedAsyncioTestCase):
         transport = httpx.MockTransport(reply)
         real_client = httpx.AsyncClient
         with patch.object(module.httpx, "AsyncClient", side_effect=lambda **kw: real_client(transport=transport, **kw)):
-            for model in ("deepseek-v3.2", "deepseek-v4.1-flash", "deepseek-v4.1-flash-1017", "deepseek-v4-pro-0813"):
+            for model in ("deepseek-v3.2", "deepseek-v4.1-flash", "deepseek-v4.1-flash-1017"):
                 for selected in (model, f"acedatacloud_models.{model}"):
                     await pipe.pipe({"model": selected, "messages": messages}, __user__=user)
                     self.assertEqual(sent[-1], model)
@@ -224,7 +224,7 @@ class PipeTests(unittest.IsolatedAsyncioTestCase):
             for unlisted in ("deepseek-v3.2-exp", "acedatacloud_models."):
                 with self.assertRaisesRegex(ValueError, "not configured"):
                     await pipe.pipe({"model": unlisted, "messages": messages}, __user__=user)
-        self.assertEqual(len(sent), 8)
+        self.assertEqual(len(sent), 6)
 
     async def test_proxy_uses_fixed_host_and_scrubs_non_api_fields(self):
         module = load(ROOT / "functions" / "acedatacloud_pipe.py")

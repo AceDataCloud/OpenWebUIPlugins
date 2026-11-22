@@ -6,7 +6,7 @@ git_url: https://github.com/AceDataCloud/OpenWebUIPlugins
 description: Use Ace Data Cloud chat models with a personal API key.
 required_open_webui_version: 0.11.4
 requirements: httpx
-version: 0.1.3
+version: 0.1.4
 licence: MIT
 """
 
@@ -45,7 +45,7 @@ class Pipe:
         MODEL_IDS: str = Field(
             default=(
                 "gpt-5.6-luna,deepseek-v4.1-flash-1017,deepseek-v4.1-flash,deepseek-v4-flash,"
-                "deepseek-flash,deepseek-v4-pro,deepseek-v4-pro-0813,deepseek-v3.2"
+                "deepseek-flash,deepseek-v4-pro,deepseek-v3.2"
             ),
             description="Comma-separated Ace Data Cloud chat model IDs to show in the model picker.",
         )
