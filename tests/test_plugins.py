@@ -48,6 +48,24 @@ class ToolSafetyTests(unittest.IsolatedAsyncioTestCase):
                     with self.assertRaisesRegex(ValueError, "Allow Billable Calls"):
                         await getattr(tool, action.name)(**kwargs)
 
+    async def test_acemusic_partial_result_and_custom_submission(self):
+        tool = load(ROOT / "tools" / "acemusic.py").Tools()
+        result = tool._result({"id": "original", "finished_at": 1,
+                               "response": {"status": "partial_failed", "success": False,
+                                            "data": [{"state": "succeeded", "audio_url": "https://example.com/song.mp3"}]}},
+                              "original")
+        self.assertEqual(result["status"], "partial_failed")
+        self.assertFalse(result["success"])
+        self.assertIn("https://example.com/song.mp3", result["media_urls"])
+        async def capture(path, body, key):
+            return path, body
+        tool._post = capture
+        path, body = await tool.generate_custom_music("Verse", "Folk", "Home", __user__={
+            "valves": tool.UserValves(API_KEY="fixture", ALLOW_BILLABLE_CALLS=True)})
+        self.assertEqual(path, "/acemusic/audios")
+        self.assertEqual(body, {"action": "generate", "custom": True, "async": True,
+                                "model": "acemusic-v1.1", "lyric": "Verse", "style": "Folk", "title": "Home"})
+
     async def test_google_search_is_opt_in(self):
         module = load(ROOT / "tools" / "google_search.py")
         tool = module.Tools()

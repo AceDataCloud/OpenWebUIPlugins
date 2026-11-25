@@ -37,6 +37,14 @@ class Service:
 
 
 SERVICES = (
+    Service("acemusic", "ACE Music", "/acemusic/tasks", (
+        Action("generate_music", "/acemusic/audios", "prompt: str, model: str = 'acemusic-v1.1'", "{'action': 'generate', 'custom': False, 'async': True, 'model': model, 'prompt': prompt}", "Generate songs from a music idea."),
+        Action("generate_custom_music", "/acemusic/audios", "lyric: str, style: str, title: str, model: str = 'acemusic-v1.1'", "{'action': 'generate', 'custom': True, 'async': True, 'model': model, 'lyric': lyric, 'style': style, 'title': title}", "Create songs with supplied lyrics, style and title."),
+        Action("upload_reference", "/acemusic/audios", "audio_url: str", "{'action': 'upload', 'async': True, 'audio_url': audio_url}", "Import one publicly accessible HTTPS MP3 as a separately priced reference."),
+        Action("cover_track", "/acemusic/audios", "audio_id: str, lyric: str, style: str, audio_influence: float = 60", "{'action': 'cover', 'async': True, 'model': 'acemusic-v1.1', 'audio_id': audio_id, 'lyric': lyric, 'style': style, 'audio_influence': audio_influence}", "Cover a caller-owned track."),
+        Action("mashup_tracks", "/acemusic/audios", "first_audio_id: str, second_audio_id: str, lyric: str, style: str, audio_influence: float = 60", "{'action': 'mashup', 'async': True, 'model': 'acemusic-v1.1', 'mashup_audio_ids': [first_audio_id, second_audio_id], 'lyric': lyric, 'style': style, 'audio_influence': audio_influence}", "Blend two distinct, compatible caller-owned tracks."),
+        Action("generate_lyrics", "/acemusic/lyrics", "prompt: str, style: str = ''", "{'prompt': prompt, **({'style': style} if style else {})}", "Generate original lyrics independently of audio creation.", async_task=False),
+    )),
     Service("gpt_image", "GPT Image", "/openai/tasks", (
         Action("generate_image", "/openai/images/generations", "prompt: str, model: str = 'gpt-image-2', size: str = '1024x1024', quality: str = 'low'", "{'prompt': prompt, 'model': model, 'size': size, 'quality': quality, 'n': 1, 'response_format': 'url', 'async': True}", "Generate one image from a text prompt.", "if not prompt.strip(): raise ValueError('Prompt is required.')"),
         Action("edit_image", "/openai/images/edits", "prompt: str, image_url: str, model: str = 'gpt-image-2', size: str = '1024x1024', quality: str = 'low'", "{'prompt': prompt, 'image': image_url, 'model': model, 'size': size, 'quality': quality, 'n': 1, 'response_format': 'url', 'async': True}", "Edit one image from a public HTTPS reference and prompt.", "if not prompt.strip() or not image_url.startswith('https://'): raise ValueError('Prompt and HTTPS image URL are required.')"),
@@ -97,6 +105,7 @@ SERVICES = (
 
 
 DISCOVERY = {
+    "acemusic": ("Generate ACE Music songs and lyrics, import references, cover or blend tracks, and retrieve an existing task.", "acemusic, music, lyrics, audio, ace-data-cloud"),
     "suno": ("Generate Suno music or lyrics through Ace Data Cloud; retrieve the same music task for final audio.", "suno, music, lyrics, audio, ace-data-cloud"),
     "seedance": ("Create Seedance text-to-video tasks through Ace Data Cloud and retrieve completed video links.", "seedance, video, text-to-video, ace-data-cloud"),
     "happy_horse": ("Create Happy Horse (HappyHorse) text-to-video tasks through Ace Data Cloud and query final videos.", "happyhorse, happy-horse, video, text-to-video, ace-data-cloud"),
@@ -237,7 +246,7 @@ class Tools:
         failed = failures or any(state in {{"failed", "error", "cancelled", "canceled", "rejected"}} for state in states)
         complete = bool(states) and all(state in {{"complete", "completed", "succeeded", "succeed", "success", "finished"}} for state in states)
         unfinished = "finished_at" in clean and clean["finished_at"] is None
-        if unfinished:
+{partial_result}        if unfinished:
             status = "pending"
         elif failed:
             status = "failed"
@@ -293,7 +302,19 @@ def render_service(service: Service) -> str:
         f"Use {service.title} through Ace Data Cloud with a personal application API key.",
         f"{service.slug.replace('_', '-')}, ace-data-cloud",
     ))
-    parts = [COMMON.format(title=service.title, description=description, tags=tags).rstrip()]
+    partial_result = ""
+    if service.slug == "acemusic":
+        partial_result = (
+            '        if isinstance(response, dict) and ("partial_failed" in '
+            '(clean.get("state"), clean.get("status"), response.get("status"))):\n'
+            '            tracks = response.get("data") or []\n'
+            '            delivered = [track for track in tracks if isinstance(track, dict) '
+            'and track.get("state") == "succeeded"]\n'
+            '            return {"status": "partial_failed", "success": False, "task_id": task_id, '
+            '"media_urls": self._media_urls(delivered), "result": clean}\n'
+        )
+    parts = [COMMON.format(title=service.title, description=description, tags=tags,
+                           partial_result=partial_result).rstrip()]
     if service.task_path:
         parts.append(
             "    async def retrieve_task(self, task_id: str, __user__: dict | None = None) -> dict:\n"

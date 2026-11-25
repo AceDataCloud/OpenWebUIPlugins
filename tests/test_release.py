@@ -18,8 +18,8 @@ class ReleaseTests(unittest.TestCase):
     def test_private_separate_imports_match_reviewed_source_bytes(self):
         assets = module.build_assets("a" * 40)
         manifest = json.loads(assets["manifest.json"])
-        self.assertEqual(len(manifest["entries"]), 18)
-        self.assertEqual(sum(entry["kind"] == "tool" for entry in manifest["entries"]), 17)
+        self.assertEqual(len(manifest["entries"]), 19)
+        self.assertEqual(sum(entry["kind"] == "tool" for entry in manifest["entries"]), 18)
         for entry in manifest["entries"]:
             with self.subTest(entry=entry["id"]):
                 form, = json.loads(assets[entry["import_asset"]["name"]])

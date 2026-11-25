@@ -107,8 +107,8 @@ def build_assets(source_commit: str, tag: str = DEFAULT_TAG) -> dict[str, bytes]
             "auto_enabled": False, "official_community_url": None,
         }
         entries.append(entry)
-    if len(entries) != 18 or len({entry["id"] for entry in entries}) != 18:
-        raise RuntimeError("Expected exactly 17 independent Tools and one optional Pipe")
+    if len(entries) != 19 or len({entry["id"] for entry in entries}) != 19:
+        raise RuntimeError("Expected exactly 18 independent Tools and one optional Pipe")
     manifest = {
         "schema_version": 1, "repository": REPOSITORY, "release_tag": tag,
         "source_commit": source_commit, "distribution": "first_party_github_release",
