@@ -208,7 +208,7 @@ class PipeTests(unittest.IsolatedAsyncioTestCase):
         module = load(ROOT / "functions" / "acedatacloud_pipe.py")
         pipe = module.Pipe()
         self.assertEqual([m["id"] for m in pipe.pipes()], [
-            "gpt-5.6-luna", "deepseek-v4.1-flash-1017", "deepseek-v4.1-flash", "deepseek-v4-flash",
+            "gpt-5.6-luna", "gemini-4-neon", "deepseek-v4.1-flash-1017", "deepseek-v4.1-flash", "deepseek-v4-flash",
             "deepseek-flash", "deepseek-v4-pro", "deepseek-v3.2",
         ])
         with self.assertRaisesRegex(ValueError, "application API key"):

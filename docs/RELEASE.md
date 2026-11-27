@@ -21,7 +21,7 @@ Community posts still need the existing Ace account's manual duplicate check and
 The [manifest builder](../scripts/build_release.py) creates a pinned source commit, exact hashes and deterministic ZIPs:
 
 ```bash
-python3 scripts/build_release.py --tag v0.1.4 --output-dir /tmp/openwebui-release-v0.1.4
+python3 scripts/build_release.py --tag v0.1.5 --output-dir /tmp/openwebui-release-v0.1.5
 ```
 
 Use a clean reviewed commit and a new empty directory. Read back the public assets and their hashes after release publication. This script neither publishes nor sends any network/API request.
