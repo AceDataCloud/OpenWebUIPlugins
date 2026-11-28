@@ -38,11 +38,11 @@ Open http://localhost:3000 and create the first account, which becomes the admin
 
 ## 2. Get the right Ace Data Cloud key
 
-1. Sign in at [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen).
-2. Open **General Application**. Copy its API key with the copy icon (**1**) or choose **Manage Keys** (**2**) to create a separate Open WebUI key. A service-specific key works only for that service.
-3. Check your service access, current price and balance. If you enable **Allowed APIs** for a restricted key, include every endpoint the chosen Connection, Pipe or Tool calls. The [service table](docs/SERVICES.md) names them. A shared administrator Connection and each user's Tool Valve may use different keys.
+Sign in to [Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen) and open **General Application**. If it is missing, select **Initialize General Application**. Click the copy button marked **1** beside **API KEY**.
 
-![Copy the API key from General Application](./_assets/tutorial/00-get-api-key.png)
+![Copy the General Application API key with the button marked 1](./_assets/tutorial/00-get-api-key.png)
+
+Open **Manage Keys** if you need a separate key for Open WebUI. A service-specific key works only for that service. Check your service access, current price and balance. If you enable **Allowed APIs** for a restricted key, include every endpoint the chosen Connection, Pipe or Tool calls. The [service table](docs/SERVICES.md) names them. A shared administrator Connection and each user's Tool Valve may use different keys.
 
 Paste the token string only. Do not include <code>Bearer </code> or quotation marks. A platform management token beginning with <code>platform-</code> is not the application API key expected here. Do not paste a key into chat text, a prompt, a workflow export, or a GitHub issue.
 

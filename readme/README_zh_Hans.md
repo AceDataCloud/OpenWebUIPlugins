@@ -38,11 +38,11 @@ docker run -d --name open-webui -p 127.0.0.1:3000:8080 \
 
 ## 2. 获取正确的应用 API Key
 
-1. 登录 [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)。
-2. 打开 **General Application**，点击图中 **1** 复制已有 API Key；也可点 **2 Manage Keys** 新建一把专用于 Open WebUI 的 Key。单服务 Key 只能访问该服务。
-3. 检查服务权限、当前价格与余额。如果启用 **Allowed APIs** 限制，须包含所选 Connection、Pipe 或 Tool 的全部接口，见[服务清单](../docs/SERVICES.md)。管理员的共享 Connection 与用户自己的 Tool Valve 可以使用不同的 Key。
+登录[应用列表](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)，打开**通用应用**。首次使用时若尚未初始化，先点击**初始化通用应用**，然后点击 **API KEY** 旁的复制按钮（图中标注 **1**）。
 
-![从 General Application 复制应用 API Key](../_assets/tutorial/00-get-api-key.png)
+![通用应用中 API KEY 旁标注 1 的复制按钮](../_assets/tutorial/00-get-api-key.png)
+
+如需给 Open WebUI 单独创建 Key，可通过**管理密钥**设置所需接口。单服务 Key 仅能调用对应服务。 检查服务权限、当前价格与余额。如果启用 **Allowed APIs** 限制，须包含所选 Connection、Pipe 或 Tool 的全部接口，见[服务清单](../docs/SERVICES.md)。管理员的共享 Connection 与用户自己的 Tool Valve 可以使用不同的 Key。
 
 只粘贴 token 字符串，不要加 <code>Bearer </code> 或引号。以 <code>platform-</code> 开头的平台管理 token 不是这里需要的应用 API Key。不要把 Key 放入聊天、提示词、导出配置或 GitHub Issue。
 
