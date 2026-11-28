@@ -18,7 +18,7 @@
 
 ## 2. 注册登录并复制或创建专用 Key
 
-1. 注册并登录 [Ace Data Cloud → 我的应用](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)；没有通用应用时先点 **初始化通用应用**。
+1. 注册并登录 [Ace Data Cloud → 我的应用](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)。
 2. 打开 **General Application / 通用应用**，核对 **Seedance** 权限、当前价格和余额。单服务 Key 限对应服务；通用 Key 也只能用账号有权使用的服务。
 3. 点击图中 **①** 复制已有 Key，或 **② Manage Keys** → **Create** 新建独立 Open WebUI Key。
 
