@@ -102,7 +102,7 @@ Historical real v0.11.4 screenshot, first committed 2026-10-09. It shows manual 
 
 ## 2. Register, sign in, and copy or create a Key
 
-1. Register or sign in at [Ace Data Cloud → Applications]({common['key']}). If needed, choose **Initialize General Application** first.
+1. Register or sign in at [Ace Data Cloud → Applications]({common['key']}).
 2. Open **General Application**. Check **{name}** access, current price and balance. A service-specific key works only for that service; a General Application key covers only services your account is entitled to use.
 3. Copy the selected application key (**1**) or open **Manage Keys** (**2**) and choose **Create** for a dedicated Open WebUI key.
 
@@ -172,7 +172,7 @@ An accepted task returns a task ID. A finished query returns `status: succeeded`
 
 ## 2. 注册登录并复制或创建专用 Key
 
-1. 注册并登录 [Ace Data Cloud → 我的应用]({common['key']})；没有通用应用时先点 **初始化通用应用**。
+1. 注册并登录 [Ace Data Cloud → 我的应用]({common['key']})。
 2. 打开 **General Application / 通用应用**，核对 **{name}** 权限、当前价格和余额。单服务 Key 限对应服务；通用 Key 也只能用账号有权使用的服务。
 3. 点击图中 **①** 复制已有 Key，或 **② Manage Keys** → **Create** 新建独立 Open WebUI Key。
 
